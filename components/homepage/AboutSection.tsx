@@ -8,8 +8,8 @@ const values = [
 ];
 
 const specialties = [
-    "Ai Prompt Engineering",
     "Web Designs System",
+    "Ai Prompt Engineering",
     "Brand & Visual Identity",
 ];
 
@@ -28,11 +28,12 @@ export default function AboutSection() {
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-10 items-stretch">
                 {/* ======================== KOLOM KIRI ======================== */}
                 <div className="flex flex-col gap-8">
+                    
                     {/* Section label + bio */}
-                    <div className="flex flex-col gap-4">
-                        <p className="text-[19px] tracking-wider uppercase text-white font-semibold">
-                            About Me
-                        </p>
+                    <div className="flex flex-col gap-2">
+                        <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-5">
+                    ABOUT ME
+                </h2>
                         <p className="text-white/60 text-base leading-relaxed">
                             I&apos;m Aslam, a versatile professional who bridges the gap
                             between design and technology. I transform complex challenges into

@@ -4,7 +4,7 @@ import { Instagram, Linkedin, Twitter, Globe, ArrowUpRight } from "lucide-react"
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
+        <section className="relative  flex items-center pt-16 overflow-hidden">
             {/* Subtle bg gradient accent */}
             <div
                 className="absolute top-0 right-0 w-[55%] h-full opacity-20 pointer-events-none"
@@ -14,7 +14,7 @@ export default function HeroSection() {
                 }}
             />
 
-            <div className="relative z-10 w-full max-w-[1200px] mx-auto px-1 grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12 items-center py-12">
+            <div className="relative z-10 w-full max-w-[1200px] mx-auto px-1 grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12 items-center py-17">
                 {/* ======================== KOLOM KIRI ======================== */}
                 <div className="flex flex-col gap-6">
                     {/* Badge available */}
