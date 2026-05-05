@@ -215,7 +215,7 @@ export const languageItems: LanguageItem[] = [
 export const profileCard = {
     name: "Maulana Aslam",
     role: "Frontend Developer",
-    photo: "/assets/porto1.png",
+    photo: "/assets/profile.jpg",
     location: "Aceh Besar, Indonesia",
     phone: "+62 853 5607 8836",
     email: "aslammaulana10@gmail.com",
