@@ -112,7 +112,7 @@ export type TrainingItem = {
 export const trainingItems: TrainingItem[] = [
     {
         name: "Web Programming",
-        logo: "/assets/experience1.png",
+        logo: "/assets/experience/blk-banda-aceh.jpg",
         organizer: "BPVP Banda Aceh (BLK Banda Aceh)",
         period: "Apr 2024 - Jul 2024",
         location: "Banda Aceh, Indonesia",
@@ -127,7 +127,7 @@ export const trainingItems: TrainingItem[] = [
     },
     {
         name: "Mastering Layout & Social Media Design",
-        logo: "/assets/experience1.png",
+        logo: "/assets/experience/rubrik-grafis.jpg",
         organizer: "RubrikGrafis.com – Putra Al-Banjary (Online Course)",
         period: "2023",
         location: "Online",
@@ -140,7 +140,7 @@ export const trainingItems: TrainingItem[] = [
     },
     {
         name: "Graphic Design",
-        logo: "/assets/experience1.png",
+        logo: "/assets/experience/blk-banda-aceh.jpg",
         organizer: "BPVP Banda Aceh (BLK Banda Aceh)",
         period: "2023",
         location: "Banda Aceh, Indonesia",
@@ -154,7 +154,7 @@ export const trainingItems: TrainingItem[] = [
     },
     {
         name: "Digital Marketing",
-        logo: "/assets/experience1.png",
+        logo: "/assets/experience/blk-banda-aceh.jpg",
         organizer: "BPVP Banda Aceh (BLK Banda Aceh)",
         period: "2022",
         location: "Banda Aceh, Indonesia",
