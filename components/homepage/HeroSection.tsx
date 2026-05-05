@@ -77,7 +77,7 @@ export default function HeroSection() {
                     {/* Image card container */}
                     <div className="relative w-full max-w-[360px] mx-auto aspect-4/5 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                         <Image
-                            src="/homepage/hero-new.jpg"
+                            src="/homepage/hero-new2.png"
                             alt="Aslam Maulana — Front-End Developer"
                             fill
                             priority
