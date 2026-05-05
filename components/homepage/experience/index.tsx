@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { experienceItems, trainingItems, languageItems } from "@/data/data";
 import { ChevronUp, ChevronDown, ExternalLink } from "lucide-react";
+import ProfileCard from "./ProfileCard";
 
 /* ─── Accordion Item ─────────────────────────────────────── */
 type AccordionItemProps = {
@@ -160,65 +161,70 @@ export default function ExperienceSection() {
             id="experience"
             className="relative w-full py-10 border-t border-t-[#ffffff21] bg-[#0f0e0f]"
         >
-            {/* Ambient glow */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-10"
-                style={{
-                    background:
-                        "radial-gradient(ellipse at 20% 80%, #201c30 0%, transparent 60%)",
-                }}
-            />
+           
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
-                <div className="flex flex-col gap-4">
+                {/* Two-column layout */}
+                <div className="flex gap-8 items-start">
 
-                    {/* EXPERIENCE */}
-                    <GroupLabel label="Experience" />
-                    {experienceItems.map((item, i) => (
-                        <AccordionItem
-                            key={`exp-${i}`}
-                            logo={item.logo}
-                            title={item.company}
-                            subtitle={item.role}
-                            period={item.period}
-                            location={item.location}
-                            points={item.points}
-                            isOpen={openIndex === expOffset + i}
-                            onToggle={() => toggle(expOffset + i)}
-                        />
-                    ))}
+                    {/* LEFT: sticky ProfileCard */}
+                    <div className="hidden lg:block w-[280px] shrink-0 sticky top-6">
+                        <ProfileCard />
+                    </div>
 
-                    {/* COURSE / TRAINING */}
-                    <GroupLabel label="Course / Training" />
-                    {trainingItems.map((item, i) => (
-                        <AccordionItem
-                            key={`train-${i}`}
-                            logo={item.logo}
-                            title={item.name}
-                            subtitle={item.organizer}
-                            period={item.period}
-                            location={item.location}
-                            points={item.points}
-                            certificateUrl={item.certificateUrl}
-                            isOpen={openIndex === trainOffset + i}
-                            onToggle={() => toggle(trainOffset + i)}
-                        />
-                    ))}
+                    {/* RIGHT: accordion groups */}
+                    <div className="flex-1 flex flex-col gap-4">
 
-                    {/* LANGUAGES */}
-                    <GroupLabel label="Languages" />
-                    {languageItems.map((item, i) => (
-                        <AccordionItem
-                            key={`lang-${i}`}
-                            logo={item.flag}
-                            title={item.language}
-                            subtitle={item.level}
-                            isOpen={openIndex === langOffset + i}
-                            onToggle={() => toggle(langOffset + i)}
-                        />
-                    ))}
+                        {/* EXPERIENCE */}
+                        <GroupLabel label="Experience" />
+                        {experienceItems.map((item, i) => (
+                            <AccordionItem
+                                key={`exp-${i}`}
+                                logo={item.logo}
+                                title={item.company}
+                                subtitle={item.role}
+                                period={item.period}
+                                location={item.location}
+                                points={item.points}
+                                isOpen={openIndex === expOffset + i}
+                                onToggle={() => toggle(expOffset + i)}
+                            />
+                        ))}
+
+                        {/* COURSE / TRAINING */}
+                        <GroupLabel label="Course / Training" />
+                        {trainingItems.map((item, i) => (
+                            <AccordionItem
+                                key={`train-${i}`}
+                                logo={item.logo}
+                                title={item.name}
+                                subtitle={item.organizer}
+                                period={item.period}
+                                location={item.location}
+                                points={item.points}
+                                certificateUrl={item.certificateUrl}
+                                isOpen={openIndex === trainOffset + i}
+                                onToggle={() => toggle(trainOffset + i)}
+                            />
+                        ))}
+
+                        {/* LANGUAGES */}
+                        <GroupLabel label="Languages" />
+                        {languageItems.map((item, i) => (
+                            <AccordionItem
+                                key={`lang-${i}`}
+                                logo={item.flag}
+                                title={item.language}
+                                subtitle={item.level}
+                                isOpen={openIndex === langOffset + i}
+                                onToggle={() => toggle(langOffset + i)}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
     );
 }
+
+

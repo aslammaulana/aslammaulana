@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { profileCard } from "@/data/data";
 import { MapPin, Phone, Mail } from "lucide-react";
 
@@ -11,6 +12,17 @@ export default function ProfileCard() {
                 WebkitBackdropFilter: "blur(8px)",
             }}
         >
+            {/* Profile Photo — 50% width, left */}
+            <div className="w-1/3 mb-[-6px] aspect-square overflow-hidden rounded-full mb-1">
+                <Image
+                    src={profileCard.photo}
+                    alt={profileCard.name}
+                    width={400}
+                    height={400}
+                    className="object-cover w-full h-full"
+                />
+            </div>
+
             {/* Name + role */}
             <div className="flex flex-col gap-1">
                 <p className="text-white font-bold text-[19px] leading-snug">
@@ -25,10 +37,6 @@ export default function ProfileCard() {
             {/* Contact info */}
             <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
-                    <MapPin size={16} className="text-white/40 shrink-0" />
-                    <span className="text-white/60 text-[13px]">{profileCard.location}</span>
-                </div>
-                <div className="flex items-center gap-3">
                     <Phone size={16} className="text-white/40 shrink-0" />
                     <span className="text-white/60 text-[13px]">{profileCard.phone}</span>
                 </div>
@@ -38,8 +46,6 @@ export default function ProfileCard() {
                 </div>
             </div>
 
-            {/* Divider */}
-            <div className="w-full h-px bg-white/8" />
 
             {/* Buttons */}
             <div className="flex flex-col gap-3">

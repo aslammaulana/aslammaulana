@@ -15,15 +15,8 @@ const specialties = [
 
 export default function AboutSection() {
     return (
-        <section id="about" className="relative w-full py-24 overflow-hidden bg-[#0c0c0c]">
-            {/* Subtle ambient glow */}
-            <div
-                className="absolute top-0 left-0 w-[50%] h-full opacity-10 pointer-events-none"
-                style={{
-                    background:
-                        "radial-gradient(ellipse at 20% 50%, #201c30 0%, transparent 70%)",
-                }}
-            />
+        <section id="about" className="relative w-full py-24 border-t border-t-[#ffffff21] overflow-hidden bg-[#0c0c0c]">
+           
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-10 items-stretch">
                 {/* ======================== KOLOM KIRI ======================== */}

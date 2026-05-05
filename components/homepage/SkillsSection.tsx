@@ -3,17 +3,10 @@ import { skillItems } from "@/data/data";
 export default function SkillsSection() {
     return (
         <section
-            id="skills"
+            id="skill"
             className="relative w-full py-10 border-t border-t-[#ffffff21] bg-[#0c0d0d]"
         >
-            {/* Ambient glow */}
-            <div
-                className="absolute inset-0 pointer-events-none opacity-10"
-                style={{
-                    background:
-                        "radial-gradient(ellipse at 80% 50%, #201c30 0%, transparent 60%)",
-                }}
-            />
+           
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
                 {/* Heading */}
