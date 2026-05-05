@@ -45,7 +45,7 @@ function AccordionItem({
                 className="w-full flex items-center gap-4 px-6 py-5 text-left group cursor-pointer"
             >
                 {/* Logo */}
-                <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden bg-white/10 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden  flex items-center justify-center">
                     {logo ? (
                         <Image
                             src={logo}
