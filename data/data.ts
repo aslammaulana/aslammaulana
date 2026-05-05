@@ -207,9 +207,9 @@ export type LanguageItem = {
 };
 
 export const languageItems: LanguageItem[] = [
-    { language: "Indonesia", flag: "/assets/experience1.png", level: "Native" },
-    { language: "English", flag: "/assets/experience1.png", level: "Intermediate" },
-    { language: "Arabic", flag: "/assets/experience1.png", level: "Intermediate" },
+    { language: "Indonesia", flag: "/homepage/indo.png", level: "Native" },
+    { language: "English", flag: "/homepage/english.png", level: "Intermediate" },
+    { language: "Arabic", flag: "/homepage/arabic.png", level: "Intermediate" },
 ];
 
 export const profileCard = {
