@@ -20,7 +20,7 @@ export const portfolioItems: PortfolioItem[] = [
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.",
         tags: ["Wordpress", "Elementor", "Crocoblock – Jet Engine"],
-        previewUrl: "#",
+        previewUrl: "https://tmnbh.vercel.app/dashboard",
         image: "/assets/porto1.png",
         images: ["/assets/porto1.png", "/assets/porto2.png", "/assets/porto1.png"],
         publishedAt: "2023",
