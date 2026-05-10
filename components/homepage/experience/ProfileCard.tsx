@@ -13,7 +13,7 @@ export default function ProfileCard() {
             }}
         >
             {/* Profile Photo — 50% width, left */}
-            <div className="w-1/3 mb-[-6px] aspect-square overflow-hidden rounded-full mb-1">
+            <div className="w-2/5 mb-[-6px] aspect-square overflow-hidden rounded-full mb-1">
                 <Image
                     src={profileCard.photo}
                     alt={profileCard.name}
