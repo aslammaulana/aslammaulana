@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { experienceItems, trainingItems, languageItems } from "@/data/data";
+import { experienceItems } from "@/data/experience";
+import { trainingItems } from "@/data/training";
+import { languageItems } from "@/data/profile";
 import { ChevronUp, ChevronDown, ExternalLink } from "lucide-react";
 import ProfileCard from "./ProfileCard";
 
@@ -161,7 +163,7 @@ export default function ExperienceSection() {
             id="experience"
             className="relative w-full py-10 border-t border-t-[#ffffff21] bg-[#0f0e0f]"
         >
-           
+
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
                 {/* Two-column layout */}

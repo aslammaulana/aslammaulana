@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { profileCard } from "@/data/data";
+import { profileCard } from "@/data/profile";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function ProfileCard() {
