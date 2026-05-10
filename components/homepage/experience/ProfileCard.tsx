@@ -37,12 +37,12 @@ export default function ProfileCard() {
             {/* Contact info */}
             <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
-                    <Phone size={16} className="text-white/40 shrink-0" />
-                    <span className="text-white/60 text-[13px]">{profileCard.phone}</span>
+                    <Phone size={17} className="text-white/40 shrink-0" />
+                    <span className="text-white/60 text-[14px]">{profileCard.phone}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Mail size={16} className="text-white/40 shrink-0" />
-                    <span className="text-white/60 text-[13px] break-all">{profileCard.email}</span>
+                    <Mail size={17} className="text-white/40 shrink-0" />
+                    <span className="text-white/60 text-[14px] break-all">{profileCard.email}</span>
                 </div>
             </div>
 
