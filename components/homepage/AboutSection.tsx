@@ -16,17 +16,28 @@ const specialties = [
 export default function AboutSection() {
     return (
         <section id="about" className="relative w-full py-24 border-t border-t-[#ffffff21] overflow-hidden bg-[#0c0c0c]">
-           
+
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-10 items-stretch">
                 {/* ======================== KOLOM KIRI ======================== */}
                 <div className="flex flex-col gap-8">
-                    
+
                     {/* Section label + bio */}
                     <div className="flex flex-col gap-2">
-                        <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-5">
-                    ABOUT ME
-                </h2>
+
+                        {/* Badge Section */}
+                        <div className="inline-flex items-center gap-2 w-fit  rounded-full  text-[13px] font-semibold uppercase text-white/50 text-sm mb-5">
+                            <span className="relative flex h-2 w-2 mr-1">
+                                <span
+                                    className="relative inline-flex rounded-full h-2 w-2 bg-white"
+                                    style={{
+                                        filter: "drop-shadow(0 0 6px rgba(255, 255, 255, 1))",
+                                    }}
+                                />
+                            </span>
+                            <p className="text-[12px] font-semibold tracking-[0.15em] uppercase text-white/50">ABOUT ME</p>
+                        </div>
+
                         <p className="text-white/60 text-base leading-relaxed">
                             I&apos;m Aslam, a versatile professional who bridges the gap
                             between design and technology. I transform complex challenges into
