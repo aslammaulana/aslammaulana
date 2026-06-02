@@ -44,10 +44,10 @@ function AccordionItem({
             {/* Header */}
             <button
                 onClick={onToggle}
-                className="w-full flex items-center gap-4 px-6 py-5 text-left group cursor-pointer"
+                className="w-full flex items-start sm:items-center gap-4 px-6 py-5 text-left group cursor-pointer"
             >
                 {/* Logo */}
-                <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden  flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden  flex items-start justify-center">
                     {logo ? (
                         <Image
                             src={logo}
@@ -74,6 +74,13 @@ function AccordionItem({
                         {title}
                     </p>
                     <p className="text-white/50 text-[14px]">{subtitle}</p>
+                    {/* Mobile: period + location — right under subtitle */}
+                    {period && (
+                        <div className="sm:hidden flex flex-col gap-0 mt-1 text-sm">
+                            <span className="text-white/80 font-medium">{period}</span>
+                            {location && <span className="text-white/40">{location}</span>}
+                        </div>
+                    )}
                 </div>
 
                 {/* Period + location + chevron */}
@@ -92,13 +99,7 @@ function AccordionItem({
                 </div>
             </button>
 
-            {/* Mobile: period + location */}
-            {period && (
-                <div className="sm:hidden px-6 pb-3 -mt-2 flex flex-col gap-0.5 text-sm">
-                    <span className="text-white/80 font-medium">{period}</span>
-                    {location && <span className="text-white/40">{location}</span>}
-                </div>
-            )}
+
 
             {/* Expandable body */}
             <div

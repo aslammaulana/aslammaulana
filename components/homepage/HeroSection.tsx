@@ -72,35 +72,63 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* ======================== KOLOM KANAN ======================== */}
-                <div className="relative flex justify-center md:justify-end">
-                    {/* Image card container */}
-                    <div className="relative w-full max-w-[360px] mx-auto aspect-4/5 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                        <Image
-                            src="/homepage/hero-new2.png"
-                            alt="Aslam Maulana — Front-End Developer"
-                            fill
-                            priority
-                            className="object-cover object-top"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                        />
 
-                        {/* Glassmorphism card info — bottom left */}
-                        <div
-                            className="glass absolute bottom-4 left-4 right-4 rounded-2xl px-4 py-3 border border-white/10"
-                            style={{
-                                background: "rgba(0,0,0,0.55)",
-                                backdropFilter: "blur(12px)",
-                                WebkitBackdropFilter: "blur(12px)",
-                            }}
-                        >
-                            <p className="text-white font-semibold text-sm">AslamMln</p>
-                            <p className="text-white/50 text-xs mt-0.5">
-                                Frontend Developer &nbsp;|&nbsp; CMS Specialist
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {/* ======================== KOLOM KANAN ======================== */}
+               {/* ======================== KOLOM KANAN ======================== */}
+<div className="relative flex justify-center md:justify-end">
+    <div className="relative w-full max-w-[360px] mx-auto">
+
+        {/* Layer belakang — ukuran penuh, gradient rim light di sini */}
+        <div className="absolute inset-0 rounded-[22px] border border-[#636363] bg-[#303030] overflow-hidden">
+            {/* Gradient rim light */}
+            <div
+                className="absolute top-0 left-0 right-0 z-10 rounded-t-3xl"
+                style={{
+                    height: "2px",
+                    background:
+                        "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0.55) 38%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.55) 62%, rgba(255,255,255,0) 90%, transparent 100%)",
+                }}
+            />
+            {/* Inner glow */}
+            <div
+                className="absolute top-0 left-0 right-0 pointer-events-none"
+                style={{
+                    height: "60px",
+                    background: "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%)",
+                }}
+            />
+        </div>
+
+        {/* Card utama — 7px lebih kecil kiri & kanan */}
+        <div className="relative m-[10px] aspect-4/5 rounded-[15px] overflow-hidden border border-white/10 shadow-2xl">
+            <Image
+                src="/homepage/hero-new2.png"
+                alt="Aslam Maulana — Front-End Developer"
+                fill
+                priority
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
+            />
+
+            {/* Glassmorphism card info */}
+            <div
+                className="absolute bottom-4 left-4 right-4 rounded-2xl px-4 py-3 border border-white/10 z-10"
+                style={{
+                    background: "rgba(0,0,0,0.55)",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                }}
+            >
+                
+                <p className="text-white font-semibold text-sm">AslamMln</p>
+                <p className="text-white/50 text-xs mt-0.5">
+                    Frontend Developer &nbsp;|&nbsp; CMS Specialist
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
             </div>
         </section>
     );

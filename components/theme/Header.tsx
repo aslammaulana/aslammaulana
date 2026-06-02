@@ -21,25 +21,47 @@ export default function Header() {
     useEffect(() => setMounted(true), []);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 10);
-        window.addEventListener("scroll", onScroll);
-        return () => window.removeEventListener("scroll", onScroll);
+        let lastY = window.scrollY;
+        let pastExperience = false;
+
+        // Track whether user has scrolled past #experience
+        const experienceSection = document.querySelector("#experience");
+        let observer: IntersectionObserver | null = null;
+
+        if (experienceSection) {
+            observer = new IntersectionObserver(
+                ([entry]) => {
+                    pastExperience = entry.boundingClientRect.top < 0;
+                    // Immediately hide if we're past the section
+                    if (pastExperience) setHidden(true);
+                },
+                { threshold: 0 }
+            );
+            observer.observe(experienceSection);
+        }
+
+        const onScroll = () => {
+            const currentY = window.scrollY;
+            setScrolled(currentY > 10);
+
+            if (currentY > lastY && currentY > 80) {
+                // scrolling down
+                setHidden(true);
+            } else if (!pastExperience) {
+                // scrolling up AND not past experience section
+                setHidden(false);
+            }
+            lastY = currentY;
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            observer?.disconnect();
+        };
     }, []);
 
-    useEffect(() => {
-        const skillsSection = document.querySelector("#experience");
-        if (!skillsSection) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setHidden(entry.isIntersecting || entry.boundingClientRect.top < 0);
-            },
-            { threshold: 0, rootMargin: "0px 0px 0px 0px" }
-        );
-
-        observer.observe(skillsSection);
-        return () => observer.disconnect();
-    }, []);
 
     const isDark = theme === "dark";
 
@@ -91,7 +113,7 @@ export default function Header() {
 
                 {/* Right side: Theme toggle + CTA */}
                 <div className="flex items-center gap-3">
-               
+
 
                     {/* CTA Button */}
                     <Link
