@@ -34,9 +34,9 @@ function AccordionItem({
 }: AccordionItemProps) {
     return (
         <div
-            className="rounded-2xl border border-white/10 overflow-hidden transition-all duration-300"
+            className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? "border-white/25" : "border-white/10"}`}
             style={{
-                background: "rgba(255,255,255,0.03)",
+                background: isOpen ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)",
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
             }}
@@ -140,9 +140,9 @@ function AccordionItem({
 }
 
 /* ─── Group Label ───────────────────────────────────────────── */
-function GroupLabel({ label }: { label: string }) {
+function GroupLabel({ label, first }: { label: string; first?: boolean }) {
     return (
-        <p className="text-sm font-bold tracking-[0.25em] uppercase text-white mt-10">
+        <p className={`text-sm font-bold tracking-[0.25em] uppercase text-white${first ? "" : " mt-10"}`}>
             {label}
         </p>
     );
@@ -157,7 +157,6 @@ export default function ExperienceSection() {
 
     const expOffset = 0;
     const trainOffset = experienceItems.length;
-    const langOffset = experienceItems.length + trainingItems.length;
 
     return (
         <section
@@ -179,7 +178,7 @@ export default function ExperienceSection() {
                     <div className="flex-1 flex flex-col gap-4">
 
                         {/* EXPERIENCE */}
-                        <GroupLabel label="Experience" />
+                        <GroupLabel label="Experience" first />
                         {experienceItems.map((item, i) => (
                             <AccordionItem
                                 key={`exp-${i}`}
@@ -213,16 +212,35 @@ export default function ExperienceSection() {
 
                         {/* LANGUAGES */}
                         <GroupLabel label="Languages" />
-                        {languageItems.map((item, i) => (
-                            <AccordionItem
-                                key={`lang-${i}`}
-                                logo={item.flag}
-                                title={item.language}
-                                subtitle={item.level}
-                                isOpen={openIndex === langOffset + i}
-                                onToggle={() => toggle(langOffset + i)}
-                            />
-                        ))}
+                        <div className="flex flex-col gap-3">
+                            {languageItems.map((item, i) => (
+                                <div
+                                    key={`lang-${i}`}
+                                    className="rounded-2xl border border-white/10 px-6 py-5 flex items-center gap-4"
+                                    style={{
+                                        background: "rgba(255,255,255,0.03)",
+                                        backdropFilter: "blur(8px)",
+                                        WebkitBackdropFilter: "blur(8px)",
+                                    }}
+                                >
+                                    {/* Flag */}
+                                    <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden flex items-center justify-center">
+                                        <Image
+                                            src={item.flag}
+                                            alt={item.language}
+                                            width={40}
+                                            height={40}
+                                            className="object-cover w-full h-full"
+                                        />
+                                    </div>
+                                    {/* Language + level */}
+                                    <div className="flex flex-col gap-0.5 flex-1 min-w-0">
+                                        <p className="text-white font-bold text-[15px] leading-snug">{item.language}</p>
+                                        <p className="text-white/50 text-[14px]">{item.level}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

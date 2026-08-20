@@ -8,7 +8,7 @@ export default function HeroSection() {
         <section
             className="relative p-3 flex items-center pt-16 overflow-hidden"
             style={{
-                background: "radial-gradient(ellipse at 50% 0%, #1e1e1e 0%, #111111 40%, #080808 100%)",
+                background: "radial-gradient(ellipse at 50% 0%, #2d2d2d 0%, #181818 40%, #080808 100%)",
             }}
         >
             {/* Noise Overlay */}
@@ -32,7 +32,7 @@ export default function HeroSection() {
 
                     {/* Heading */}
                     <div className="flex flex-col gap-1">
-                        <h1 className="text-[25px] lg:text-[43px] font-semibold text-white leading-snug tracking-tight"
+                        <h1 className="text-[30px] lg:text-[43px] font-semibold text-white leading-snug tracking-tight"
                         >
                             Crafting meaningful digital experiences that move your
                             <span
@@ -40,7 +40,7 @@ export default function HeroSection() {
                                 style={{
                                     fontFamily: "var(--font-croissant)",
                                     fontStyle: "italic",
-                                    background: "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.3) 100%)",
+                                    background: "linear-gradient(to bottom, #ffffff 30%, rgba(255,255,255,0.3) 100%)",
                                     WebkitBackgroundClip: "text",
                                     WebkitTextFillColor: "transparent",
                                     backgroundClip: "text",
@@ -62,7 +62,7 @@ export default function HeroSection() {
                     <div className="flex items-center gap-4 flex-wrap mt-3">
                         <Link
                             href="#contact"
-                            className="flex items-center gap-1.5 px-6 py-3 rounded-full border border-white/40 text-[#0f0f0e] text-sm font-semibold bg-white hover:bg-[#e9e9e9] hover:text-[#0f0f0e] transition-all duration-300"
+                            className="flex items-center gap-1.5 px-6 py-3 rounded-full border border-white/40 text-[#0f0f0e] text-sm font-semibold bg-white hover:bg-[#520913] hover:text-white transition-all duration-300"
                         >
                             Resume
                             <ArrowUpRight size={15} strokeWidth={2.5} />
@@ -75,13 +75,13 @@ export default function HeroSection() {
 
                     {/* Social Icons */}
                     <div className="flex items-center gap-5 mt-1">
-                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53] transition-colors duration-200" aria-label="LinkedIn">
                             <FaLinkedin size={28} />
                         </a>
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white transition-colors duration-200" aria-label="GitHub">
+                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53] transition-colors duration-200" aria-label="GitHub">
                             <FaSquareGithub size={28} />
                         </a>
-                        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white transition-colors duration-200" aria-label="Instagram">
+                        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53]  transition-colors duration-200" aria-label="Instagram">
                             <FaInstagram size={28} />
                         </a>
                     </div>
@@ -117,7 +117,7 @@ export default function HeroSection() {
                         <div className="relative m-[10px] aspect-4/5 rounded-[15px] overflow-hidden border border-white/10 shadow-2xl">
                             <Image
                                 src="/homepage/hero-new2.webp"
-                                alt="Aslam Maulana — Front-End Developer"
+                                alt="Aslam"
                                 fill
                                 priority
                                 className="object-cover object-top"
@@ -136,7 +136,7 @@ export default function HeroSection() {
 
                                 <p className="text-white font-semibold text-sm">AslamMln</p>
                                 <p className="text-white/50 text-xs mt-0.5">
-                                    Frontend Developer &nbsp;|&nbsp; CMS Specialist
+                                    Web Developer &nbsp;|&nbsp; AI Automation<span className="hidden sm:inline"> Engineer</span>
                                 </p>
                             </div>
                         </div>

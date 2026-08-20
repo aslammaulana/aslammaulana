@@ -20,7 +20,7 @@ export default function SkillsSection() {
                     {programmingSkills.map((skill, i) => (
                         <span
                             key={i}
-                            className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm bg-white/4 border border-white/15 text-white/80"
+                            className="px-4 py-2 rounded-full text-sm font-medium bg-white/[0.07] border border-white/15 text-white/80"
                         >
                             {skill.name}
                         </span>
@@ -32,7 +32,7 @@ export default function SkillsSection() {
                     {designSkills.map((skill, i) => (
                         <span
                             key={i}
-                            className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm bg-[#566bca28] border border-white/15 text-white/80"
+                            className="px-4 py-2 rounded-full text-sm font-medium bg-[#0c47789d] border border-white/15 text-white/80"
                         >
                             {skill.name}
                         </span>
