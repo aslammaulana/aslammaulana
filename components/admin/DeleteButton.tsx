@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Trash2, Loader2 } from "lucide-react";
-import { deletePortfolioItem } from "@/app/admin/portfolio/actions";
+import { deletePortfolioItem } from "@/app/admin/(dashboard)/portfolio/actions";
 
 export default function DeleteButton({ id, title }: { id: string; title: string }) {
     const [loading, setLoading] = useState(false);

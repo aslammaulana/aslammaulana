@@ -1,10 +1,13 @@
-import { loginAction } from "./actions";
+import LoginForm from "@/components/admin/LoginForm";
 
-export default function LoginPage({
+export default async function LoginPage({
     searchParams,
 }: {
     searchParams: Promise<{ error?: string }>;
 }) {
+    const params = await searchParams;
+    const error = params?.error;
+
     return (
         <div
             className="min-h-screen flex items-center justify-center px-4"
@@ -26,6 +29,12 @@ export default function LoginPage({
                 >
                     <h1 className="text-white font-bold text-lg mb-6">Masuk ke Dashboard</h1>
 
+                    {error && (
+                        <div className="mb-4 p-3 rounded-lg border border-red-500/20 bg-red-500/10 text-red-400 text-xs leading-relaxed">
+                            {error}
+                        </div>
+                    )}
+
                     <LoginForm />
                 </div>
 
@@ -34,47 +43,5 @@ export default function LoginPage({
                 </p>
             </div>
         </div>
-    );
-}
-
-/* ── Client form extracted to avoid async/await issues in server component ── */
-function LoginForm() {
-    return (
-        <form action={loginAction} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-white/50 uppercase tracking-wider">
-                    Email
-                </label>
-                <input
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    placeholder="admin@example.com"
-                    className="w-full px-3 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-white/30 transition-all"
-                />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-white/50 uppercase tracking-wider">
-                    Password
-                </label>
-                <input
-                    name="password"
-                    type="password"
-                    required
-                    autoComplete="current-password"
-                    placeholder="••••••••"
-                    className="w-full px-3 py-2.5 rounded-lg border border-white/10 bg-white/5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-white/30 transition-all"
-                />
-            </div>
-
-            <button
-                type="submit"
-                className="w-full mt-2 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200"
-            >
-                Masuk
-            </button>
-        </form>
     );
 }

@@ -57,7 +57,7 @@ export default async function AdminDashboard() {
             {/* Table */}
             <div
                 className="rounded-2xl border border-white/8 overflow-hidden"
-                style={{ background: "rgba(255,255,255,0.02)" }}
+                style={{ background: "rgba(255,255,200,0.02)" }}
             >
                 <div className="px-6 py-4 border-b border-white/8">
                     <p className="text-white font-semibold text-sm">Semua Portfolio</p>

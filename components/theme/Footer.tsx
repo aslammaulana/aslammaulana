@@ -14,7 +14,7 @@ export default function Footer() {
 
                 {/* Right */}
                 <p className="text-white/40 text-[13px] text-right shrink-0">
-                    2026 Portfolio Coming Soon 🙂
+                    Updated Portfolio Coming Soon 🙂
                 </p>
             </div>
         </footer>
