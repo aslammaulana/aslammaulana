@@ -1,72 +1,75 @@
-export type PortfolioItem = {
+﻿export type PortfolioItem = {
+    id?: string;           // uuid from Supabase
+    slug: string;
     category: string;
     title: string;
     description: string;
     tags: string[];
     previewUrl: string;
     image: string;
-    /** Array of images for the popup carousel */
     images: string[];
     publishedAt?: string;
     features?: string[];
-    /** "left" = image on right, text on left | "right" = image on left, text on right */
     imagePosition: "left" | "right";
     color: string;
+    client?: string;
+    role?: string;
+    overview?: string;
+    challenge?: string;
+    solution?: string;
+    status?: string;
+    order?: number;
 };
 
-export const portfolioItems: PortfolioItem[] = [
-    {
-        category: "Company Profile",
-        title: "Ibadurrahman Travel",
-        color: "0c4778",
-        description:
-            "Redesigning a core internal company service.",
-        tags: ["Wordpress", "Elementor", "Crocoblock – Jet Engine"],
-        previewUrl: "https://tmnbh.vercel.app/dashboard",
-        image: "/assets/porto1.png",
-        images: ["/assets/porto1.png", "/assets/porto2.png", "/assets/porto1.png"],
-        publishedAt: "2023",
-        features: [
-            "Responsive company profile website",
-            "Custom Jet Engine post types",
-            "Dynamic pilgrimage package listings",
-        ],
-        imagePosition: "left",
-    },
-    {
-        category: "NGO Profile",
-        title: "LT3Q Elmasudy",
-        color: "6b6b6b",
-        description:
-            "Making entertainment more uniting.",
-        tags: ["Next.js", "Tailwind", "Gemini Api"],
-        previewUrl: "#",
-        image: "/assets/porto2.png",
-        images: ["/assets/porto2.png", "/assets/porto1.png", "/assets/porto2.png"],
-        publishedAt: "2024",
-        features: [
-            "AI-powered Q&A with Gemini API",
-            "Modern NGO profile page",
-            "Fully responsive design",
-        ],
-        imagePosition: "right",
-    },
-    {
-        category: "Company Profile",
-        title: "Ibadurrahman Travel",
-        color: "0e5c77",
-        description:
-            "Envisioning a future of playtesting for all developers.",
-        tags: ["Wordpress", "Elementor", "Crocoblock – Jet Engine"],
-        previewUrl: "#",
-        image: "/assets/porto1.png",
-        images: ["/assets/porto1.png", "/assets/porto2.png"],
-        publishedAt: "2023",
-        features: [
-            "Responsive company profile website",
-            "Custom Jet Engine post types",
-            "Dynamic pilgrimage package listings",
-        ],
-        imagePosition: "left",
-    },
-];
+/** Shape of a row returned from Supabase `portfolio_items` table */
+export type DbPortfolioRow = {
+    id: string;
+    slug: string;
+    category: string;
+    title: string;
+    description: string;
+    overview: string | null;
+    challenge: string | null;
+    solution: string | null;
+    client: string | null;
+    role: string | null;
+    published_at: string | null;
+    status: string | null;
+    color: string;
+    image_position: "left" | "right";
+    preview_url: string;
+    image: string;
+    images: string[] | null;
+    tags: string[] | null;
+    features: string[] | null;
+    order: number;
+};
+
+/** Convert Supabase snake_case row → camelCase PortfolioItem */
+export function mapPortfolioRow(row: DbPortfolioRow): PortfolioItem {
+    return {
+        id: row.id,
+        slug: row.slug,
+        category: row.category,
+        title: row.title,
+        description: row.description,
+        overview: row.overview ?? undefined,
+        challenge: row.challenge ?? undefined,
+        solution: row.solution ?? undefined,
+        client: row.client ?? undefined,
+        role: row.role ?? undefined,
+        publishedAt: row.published_at ?? undefined,
+        status: row.status ?? undefined,
+        color: row.color,
+        imagePosition: row.image_position,
+        previewUrl: row.preview_url,
+        image: row.image,
+        images: row.images ?? [],
+        tags: row.tags ?? [],
+        features: row.features ?? [],
+        order: row.order,
+    };
+}
+
+// Legacy static array — kept empty; data now lives in Supabase
+export const portfolioItems: PortfolioItem[] = [];

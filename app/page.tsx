@@ -7,6 +7,9 @@ import PortfolioSection from "@/components/homepage/PortfolioSection";
 import ExperienceSection from "@/components/homepage/experience";
 import SkillsSection from "@/components/homepage/SkillsSection";
 
+export const revalidate = 60; // ISR — revalidate homepage every 60 seconds
+
+
 export default function Home() {
   return (
     <main className="min-h-screen">

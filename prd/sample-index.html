@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Portofolio - Elmasudy</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    line-height: 1.6;
+    background: #fff;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: block;
+    padding: 20px 0;
+  }
+  .back-link a {
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .back-link a:hover { text-decoration: underline; }
+
+  /* Hero / Header */
+  .project-header {
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .project-header .label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .project-header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .project-header p.summary {
+    font-size: 16px;
+    color: #555;
+    max-width: 600px;
+  }
+  .project-links {
+    margin-top: 16px;
+  }
+  .project-links a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #1a2b4a;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  /* Hero image placeholder */
+  .hero-image {
+    margin: 24px 0;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Meta info grid */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .meta-item .meta-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  .meta-item .meta-value {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  /* Section */
+  .section {
+    padding: 36px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .section h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .section p {
+    color: #444;
+    max-width: 700px;
+  }
+
+  /* Feature list */
+  .feature-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .feature-list li {
+    padding: 12px 14px;
+    background: #f7f7f7;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  /* Tech stack tags */
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .tag {
+    padding: 6px 12px;
+    background: #eef1f7;
+    color: #1a2b4a;
+    font-size: 13px;
+    border-radius: 20px;
+  }
+
+  /* Gallery grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .gallery-grid .img-box {
+    aspect-ratio: 4/3;
+    background: #e5e5e5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 13px;
+    overflow: hidden;
+  }
+  .gallery-grid img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Challenge / Solution two column */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+  }
+  .two-col .col h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #1a2b4a;
+  }
+  .two-col .col p {
+    font-size: 14px;
+  }
+
+  /* Next project nav */
+  .next-project {
+    padding: 30px 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .next-project a {
+    text-decoration: none;
+    color: #1a2b4a;
+    font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .feature-list { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="back-link">
+    <a href="#">&larr; Kembali ke Portofolio</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="project-header">
+    <div class="label">Company Profile Website</div>
+    <h1>Yayasan Elmasudy Center Indonesia</h1>
+    <p class="summary">
+      Website company profile untuk lembaga tarbiyah islamiyah yang berfokus pada
+      pembelajaran Tahsin, Tahfidz, dan Tafsir Al-Qur'an.
+    </p>
+    <div class="project-links">
+      <a href="https://elmasudy-web.vercel.app" target="_blank">Kunjungi Website</a>
+    </div>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <div class="hero-image">
+    [ Screenshot Hero Section Website ]
+  </div>
+
+  <!-- META INFO -->
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="meta-label">Klien</div>
+      <div class="meta-value">Yayasan Elmasudy</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Peran</div>
+      <div class="meta-value">Web Developer</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Tahun</div>
+      <div class="meta-value">2024</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Status</div>
+      <div class="meta-value">Live</div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <h2>Tentang Proyek</h2>
+    <p>
+      Yayasan Elmasudy membutuhkan website untuk memperkenalkan lembaga, program-program
+      pembelajaran Al-Qur'an, serta galeri kegiatan santri kepada masyarakat luas.
+      Website ini dibangun agar calon santri dan orang tua dapat dengan mudah memahami
+      program yang tersedia dan menghubungi pihak yayasan secara langsung.
+    </p>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <h2>Fitur Utama</h2>
+    <ul class="feature-list">
+      <li>Hero section dengan CTA "Hubungi Kami"</li>
+      <li>Section keunggulan lembaga (Tenaga Pengajar, Pendidikan, Standar Internasional)</li>
+      <li>Listing Program Daurah Ramadhan (DTN, MTN, STOR)</li>
+      <li>Listing Program Sekolah (MQL, MATAYA, STO, ElMasudy Privat)</li>
+      <li>Section About Us / sejarah lembaga</li>
+      <li>Section Visi & Misi</li>
+      <li>Galeri foto kegiatan santri (grid gallery)</li>
+      <li>Logo mitra/partner lembaga</li>
+      <li>Footer dengan info kontak & sosial media</li>
+      <li>Desain responsif untuk mobile</li>
+    </ul>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section">
+    <h2>Tech Stack</h2>
+    <div class="tag-list">
+      <span class="tag">Next.js</span>
+      <span class="tag">React</span>
+      <span class="tag">Tailwind CSS</span>
+      <span class="tag">Vercel</span>
+    </div>
+  </div>
+
+  <!-- CHALLENGE / SOLUTION -->
+  <div class="section">
+    <h2>Tantangan & Solusi</h2>
+    <div class="two-col">
+      <div class="col">
+        <h3>Tantangan</h3>
+        <p>
+          Menyusun banyak program dan kategori (Daurah & Sekolah) agar tetap
+          mudah dipahami pengunjung, serta mengelola galeri foto kegiatan
+          dalam jumlah besar tanpa memperlambat loading halaman.
+        </p>
+      </div>
+      <div class="col">
+        <h3>Solusi</h3>
+        <p>
+          Membagi program ke dalam grid card yang jelas per kategori, serta
+          melakukan optimasi gambar dan lazy loading pada bagian galeri
+          untuk menjaga performa halaman tetap cepat.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="section">
+    <h2>Galeri Screenshot</h2>
+    <div class="gallery-grid">
+      <div class="img-box">[ Section Program ]</div>
+      <div class="img-box">[ Section About Us ]</div>
+      <div class="img-box">[ Section Visi Misi ]</div>
+      <div class="img-box">[ Section Gallery ]</div>
+      <div class="img-box">[ Section Footer ]</div>
+      <div class="img-box">[ Tampilan Mobile ]</div>
+    </div>
+  </div>
+
+  <!-- NEXT PROJECT NAV -->
+  <div class="next-project">
+    <a href="#">&larr; Proyek Sebelumnya</a>
+    <a href="#">Proyek Selanjutnya &rarr;</a>
+  </div>
+
+</div>
+
+</body>
+</html>

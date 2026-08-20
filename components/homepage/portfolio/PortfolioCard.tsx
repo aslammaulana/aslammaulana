@@ -1,19 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { PortfolioItem } from "@/data/portfolio";
 
-export function PortfolioCard({
-    item,
-    onClick,
-}: {
-    item: PortfolioItem;
-    onClick: () => void;
-}) {
+export function PortfolioCard({ item }: { item: PortfolioItem }) {
     return (
-        <button
-            onClick={onClick}
+        <Link
+            href={`/portfolio/${item.slug}`}
             className="relative w-full text-left group cursor-pointer focus:outline-none"
             aria-label={`View ${item.title}`}
         >
@@ -100,6 +95,6 @@ export function PortfolioCard({
                     </div>
                 </div>
             </div>
-        </button>
+        </Link>
     );
 }
