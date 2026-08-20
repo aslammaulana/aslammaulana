@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createAdminClient } from "@/lib/supabase/server";
 import { mapPortfolioRow } from "@/data/portfolio";
 import PortfolioDetailPage from "@/components/portfolio/PortfolioDetailPage";
 import type { DbPortfolioRow } from "@/data/portfolio";
@@ -9,15 +9,17 @@ export const revalidate = 60; // ISR — revalidate every 60 seconds
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Runs at BUILD TIME — must NOT use cookies(), use admin client instead
 export async function generateStaticParams() {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     const { data } = await supabase.from("portfolio_items").select("slug");
     return (data ?? []).map((row: { slug: string }) => ({ slug: row.slug }));
 }
 
+// Runs at BUILD TIME — must NOT use cookies()
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     const { data } = await supabase
         .from("portfolio_items")
         .select("title, overview, description")
@@ -31,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
+// Runs at REQUEST TIME — can use cookie-based client
 export default async function PortfolioSlugPage({ params }: Props) {
     const { slug } = await params;
     const supabase = await createClient();

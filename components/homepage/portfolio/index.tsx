@@ -1,10 +1,10 @@
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/server";
 import { mapPortfolioRow } from "@/data/portfolio";
 import { PortfolioCard } from "./PortfolioCard";
 import type { DbPortfolioRow } from "@/data/portfolio";
 
 export default async function PortfolioSection() {
-    const supabase = await createClient();
+    const supabase = createAdminClient();
     const { data: rows } = await supabase
         .from("portfolio_items")
         .select("*")
