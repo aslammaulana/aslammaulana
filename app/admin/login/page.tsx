@@ -10,17 +10,11 @@ export default async function LoginPage({
 
     return (
         <div
-            className="min-h-screen flex items-center justify-center px-4"
-            style={{
-                background: "radial-gradient(ellipse at 50% 0%, #2d2d2d 0%, #181818 40%, #080808 100%)",
-            }}
+            className="min-h-screen bg-[#0F0E0F] flex items-center justify-center px-4"
+            
         >
             <div className="w-full max-w-[380px]">
-                {/* Logo / Brand */}
-                <div className="text-center mb-8">
-                    <p className="text-white font-bold text-xl">AslamMln</p>
-                    <p className="text-white/40 text-sm mt-1">Admin Dashboard</p>
-                </div>
+                
 
                 {/* Card */}
                 <div
@@ -39,7 +33,7 @@ export default async function LoginPage({
                 </div>
 
                 <p className="text-center text-white/20 text-xs mt-6">
-                    Hanya untuk admin. Akses tidak diizinkan.
+                    Only for Administrator.
                 </p>
             </div>
         </div>

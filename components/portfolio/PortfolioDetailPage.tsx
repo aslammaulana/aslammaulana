@@ -26,7 +26,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
         <div className="min-h-screen bg-[#0f0e0f]">
             {/* ── Top Nav Bar ── */}
             <div className="w-full border-b border-white/8 bg-[#0f0e0f]/80 backdrop-blur-md sticky top-0 z-50">
-                <div className="w-full max-w-[900px] mx-auto px-4 py-4 flex items-center justify-between">
+                <div className="w-full max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
                     <Link
                         href="/#work"
                         className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200"
@@ -48,7 +48,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 </div>
             </div>
 
-            <div className="w-full max-w-[900px] mx-auto px-4 pb-20">
+            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
 
                 {/* ── Project Header ── */}
                 <div className="pt-12 pb-10 border-b border-white/8">
@@ -58,7 +58,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     <h1 className="text-3xl md:text-[40px] font-bold text-white leading-tight tracking-tight mb-4">
                         {item.title}
                     </h1>
-                    <p className="text-white/50 text-[16px] max-w-[600px] leading-relaxed">
+                    <p className="text-white/50 text-[16px] max-w-[800px] leading-relaxed">
                         {item.overview ?? item.description}
                     </p>
                     {item.previewUrl && item.previewUrl !== "#" && (
@@ -87,7 +87,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                         fill
                         priority
                         className="object-cover object-top"
-                        sizes="(max-width: 900px) 100vw, 900px"
+                        sizes="(max-width: 1200px) 100vw, 1200px"
                     />
                     {/* Subtle color overlay from item.color */}
                     <div
@@ -98,18 +98,21 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     />
                 </div>
 
-                {/* ── Meta Grid ── */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10 p-6 rounded-2xl border border-white/10"
-                    style={{ background: "rgba(255,255,255,0.03)" }}>
+                {/* ── Meta Grid: 4 Boxes Berjejer ── */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
                     {[
-                        { label: "Klien", value: item.client ?? "—" },
-                        { label: "Peran", value: item.role ?? "Web Developer" },
-                        { label: "Tahun", value: item.publishedAt ?? "—" },
-                        { label: "Status", value: item.status ?? "—" },
+                        { label: "KLIEN", value: item.client ?? "—" },
+                        { label: "PERAN", value: item.role ?? "Web Developer" },
+                        { label: "TAHUN", value: item.publishedAt ?? "—" },
+                        { label: "STATUS", value: item.status ?? "—" },
                     ].map(({ label, value }) => (
-                        <div key={label} className="flex flex-col gap-1">
-                            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/30">{label}</p>
-                            <p className="text-white font-semibold text-[15px]">{value}</p>
+                        <div
+                            key={label}
+                            className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20"
+                            style={{ background: "rgba(255,255,255,0.03)" }}
+                        >
+                            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">{label}</p>
+                            <p className="text-white font-semibold text-[15px] leading-snug">{value}</p>
                         </div>
                     ))}
                 </div>
@@ -118,7 +121,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 {item.overview && (
                     <div className="mt-12 pt-10 border-t border-white/8">
                         <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-4">Tentang Proyek</p>
-                        <p className="text-white/60 leading-relaxed text-[15px] max-w-[720px]">
+                        <p className="text-white/60 leading-relaxed text-[15px] max-w-[900px]">
                             {item.overview}
                         </p>
                     </div>
