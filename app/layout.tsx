@@ -28,7 +28,7 @@ const croissantOne = Croissant_One({
 });
 
 export const metadata: Metadata = {
-  title: "Aslam Maulana — Front-End Developer & CMS Specialist",
+  title: "Aslam Maulana — Ai Web Developer",
   description:
     "Crafting meaningful digital experiences that move your business forward. Portfolio of Aslam Maulana, Front-End Developer & CMS Specialist.",
 };
