@@ -15,8 +15,25 @@ const specialties = [
 
 export default function AboutSection() {
     return (
-        <section id="about" className="relative w-full py-24 border-t border-t-[#ffffff21] overflow-hidden bg-[#0c0c0c]">
-
+        <section
+            id="about"
+            className="relative w-full py-24 border-t border-t-[#ffffff21] overflow-hidden"
+            style={{
+                background: "radial-gradient(ellipse at 50% 0%, #1e1e1e 0%, #111111 40%, #080808 100%)",
+            }}
+        >
+            {/* Noise Overlay */}
+            <div
+                className="absolute inset-0 pointer-events-none z-0"
+                style={{
+                    backgroundImage: "url('/homepage/noise-overlay.png')",
+                    backgroundRepeat: "repeat",
+                    backgroundSize: "400px 400px",
+                    opacity: 0.06,
+                    maskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                }}
+            />
 
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-10 items-stretch">
                 {/* ======================== KOLOM KIRI ======================== */}

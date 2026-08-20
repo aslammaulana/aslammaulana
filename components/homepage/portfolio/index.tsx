@@ -15,7 +15,7 @@ export default function PortfolioSection() {
                 id="work"
                 className="relative w-full py-10 overflow-hidden border-t border-t-[#ffffff21] bg-[#0e0f0f]"
             >
-                <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
+                <div className="relative z-10 w-full max-w-[1230px] mx-auto px-4">
                     <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-10">
                         Selected Portofolio
                     </h2>

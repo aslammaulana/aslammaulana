@@ -5,32 +5,38 @@ import { FaLinkedin, FaSquareGithub, FaInstagram } from "react-icons/fa6";
 
 export default function HeroSection() {
     return (
-        <section className="relative p-3 flex items-center pt-16 overflow-hidden">
+        <section
+            className="relative p-3 flex items-center pt-16 overflow-hidden"
+            style={{
+                background: "radial-gradient(ellipse at 50% 0%, #1e1e1e 0%, #111111 40%, #080808 100%)",
+            }}
+        >
+            {/* Noise Overlay */}
+            <div
+                className="absolute inset-0 pointer-events-none z-0"
+                style={{
+                    backgroundImage: "url('/homepage/noise-overlay.png')",
+                    backgroundRepeat: "repeat",
+                    backgroundSize: "400px 400px",
+                    opacity: 0.06,
+                    maskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                }}
+            />
 
 
             <div className="relative z-10 w-full max-w-[1200px]  mx-auto px-1 grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12 items-center py-17">
                 {/* ======================== KOLOM KIRI ======================== */}
                 <div className="flex flex-col gap-6">
-                    {/* Badge Section */}
-                    <div className="inline-flex items-center gap-2 w-fit  rounded-full  text-[13px] font-semibold uppercase text-white/50 text-sm">
-                        <span className="relative flex h-2 w-2 mr-1">
-                            <span
-                                className="relative inline-flex rounded-full h-2 w-2 bg-white"
-                                style={{
-                                    filter: "drop-shadow(0 0 6px rgba(255, 255, 255, 1))",
-                                }}
-                            />
-                        </span>
-                        <p className="text-[12px] font-medium tracking-[0.15em] uppercase text-white/50">Aslam - Web Developer</p>
-                    </div>
+                    
 
                     {/* Heading */}
                     <div className="flex flex-col gap-1">
-                        <h1 className="text-[26px] lg:text-[45px] font-semibold text-white leading-snug tracking-tight"
+                        <h1 className="text-[25px] lg:text-[43px] font-semibold text-white leading-snug tracking-tight"
                         >
                             Crafting meaningful digital experiences that move your
                             <span
-                                className="text-[26px] lg:text-[45px] font-bold leading-tight tracking-tight"
+                                className="text-[30px] lg:text-[45px] font-bold leading-tight tracking-tight"
                                 style={{
                                     fontFamily: "var(--font-croissant)",
                                     fontStyle: "italic",
@@ -43,7 +49,15 @@ export default function HeroSection() {
                             > business forward.</span>
                         </h1>
                     </div>
-
+                    {/* Desc */}
+                    <div className="flex flex-col gap-1.5">
+                        <p className="text-[18px] font-medium text-white leading-snug tracking-tight">
+                            Designer at Home. Based in Peukan Bada.
+                        </p>
+                        <p className="text-[18px] font-medium text-[#ffffff67] leading-snug tracking-tight">
+                            Formerly at Bed.
+                        </p>
+                    </div>
                     {/* CTA buttons */}
                     <div className="flex items-center gap-4 flex-wrap mt-3">
                         <Link
@@ -102,7 +116,7 @@ export default function HeroSection() {
                         {/* Card utama — 7px lebih kecil kiri & kanan */}
                         <div className="relative m-[10px] aspect-4/5 rounded-[15px] overflow-hidden border border-white/10 shadow-2xl">
                             <Image
-                                src="/homepage/hero-new2.png"
+                                src="/homepage/hero-new2.webp"
                                 alt="Aslam Maulana — Front-End Developer"
                                 fill
                                 priority

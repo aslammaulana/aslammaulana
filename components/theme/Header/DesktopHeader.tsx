@@ -16,9 +16,9 @@ export default function DesktopHeader({ scrolled }: DesktopHeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className="hidden md:block pointer-events-none">
+        <div className="hidden md:block pointer-events-none ">
             {/* Glassmorphism Logo (Not Sticky) */}
-            <div className="absolute top-0 left-0 w-full flex justify-center z-40 pointer-events-none">
+            <div className="absolute top-0 left-0 w-full flex justify-center z-40 pointer-events-none pt-6">
                 <div className="w-full max-w-[1280px] px-6 pt-6 flex justify-start">
                     <div className="pointer-events-auto">
                         <Link
@@ -39,7 +39,7 @@ export default function DesktopHeader({ scrolled }: DesktopHeaderProps) {
 
             {/* Glassmorphism Menu Dropdown (Sticky) */}
             <div
-                className="fixed top-0 left-0 w-full flex justify-center z-50 pointer-events-none"
+                className="fixed top-0 left-0 w-full flex justify-center z-50 pt-6 pointer-events-none"
             >
                 <div className="w-full max-w-[1280px] px-6 pt-6 flex justify-end">
                     <div className="relative pointer-events-auto">

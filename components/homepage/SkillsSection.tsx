@@ -7,7 +7,7 @@ export default function SkillsSection() {
     return (
         <section
             id="skill"
-            className="relative w-full py-10 border-t border-t-[#ffffff21] bg-[#0c0d0d]"
+            className="relative w-full py-10 border-t border-t-[#ffffff21] bg-[#0A0A0A]"
         >
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
                 {/* Heading */}
