@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { uploadPortfolioImage } from "@/app/admin/(dashboard)/portfolio/actions";
 import { UploadCloud, X, Plus, Loader2, ImageIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -108,39 +108,51 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
         if (!isEdit) set("slug", slugify(value));
     };
 
-    /* ── Image upload helpers ── */
-    const uploadFile = async (file: File): Promise<string | null> => {
-        const supabase = createClient();
-        const ext = file.name.split(".").pop() ?? "jpg";
-        const filename = `${crypto.randomUUID()}.${ext}`;
-        const { data, error } = await supabase.storage
-            .from("portfolio-images")
-            .upload(filename, file, { upsert: true });
-        if (error || !data) return null;
-        const { data: { publicUrl } } = supabase.storage
-            .from("portfolio-images")
-            .getPublicUrl(data.path);
-        return publicUrl;
-    };
-
+    /* ── Image upload handlers via Server Action ── */
     const handleMainImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
         setUploadingMain(true);
-        const url = await uploadFile(file);
-        setUploadingMain(false);
-        if (url) set("image", url);
+        setError(null);
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            const res = await uploadPortfolioImage(formData);
+            if (res.success && res.url) {
+                set("image", res.url);
+            } else {
+                setError(res.error || "Gagal mengunggah gambar utama.");
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Terjadi kesalahan saat mengunggah gambar.");
+        } finally {
+            setUploadingMain(false);
+            e.target.value = "";
+        }
     };
 
     const handleGalleryUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files ?? []);
         if (!files.length) return;
         setUploadingGallery(true);
-        for (const file of files) {
-            const url = await uploadFile(file);
-            if (url) setForm((prev) => ({ ...prev, images: [...prev.images, url] }));
+        setError(null);
+        try {
+            for (const file of files) {
+                const formData = new FormData();
+                formData.append("file", file);
+                const res = await uploadPortfolioImage(formData);
+                if (res.success && res.url) {
+                    setForm((prev) => ({ ...prev, images: [...prev.images, res.url!] }));
+                } else {
+                    setError(res.error || `Gagal mengunggah gambar ${file.name}.`);
+                }
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Terjadi kesalahan saat mengunggah galeri.");
+        } finally {
+            setUploadingGallery(false);
+            e.target.value = "";
         }
-        setUploadingGallery(false);
     };
 
     /* ── Chip helpers ── */
@@ -341,7 +353,7 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
             <div className="flex flex-col gap-3">
                 {form.image && (
                     <div className="relative w-full max-w-sm aspect-video rounded-xl overflow-hidden border border-white/10">
-                        <Image src={form.image} alt="Main image" fill className="object-cover" />
+                        <Image src={form.image} alt="Main image" fill unoptimized className="object-cover" />
                         <button
                             type="button"
                             onClick={() => set("image", "")}
@@ -382,7 +394,7 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
                     <div className="grid grid-cols-3 gap-3">
                         {form.images.map((url, i) => (
                             <div key={i} className="relative aspect-video rounded-lg overflow-hidden border border-white/10">
-                                <Image src={url} alt={`Gallery ${i + 1}`} fill className="object-cover" />
+                                <Image src={url} alt={`Gallery ${i + 1}`} fill unoptimized className="object-cover" />
                                 <button
                                     type="button"
                                     onClick={() => set("images", form.images.filter((_, idx) => idx !== i))}
