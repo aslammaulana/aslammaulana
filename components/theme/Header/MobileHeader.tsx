@@ -1,13 +1,35 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { ArrowUpRight } from "lucide-react";
 import { navLinks } from "./navLinks";
+import AdminNavLink from "./AdminNavLink";
 
 export default function MobileHeader() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("touchstart", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("touchstart", handleClickOutside);
+        };
+    }, [isMenuOpen]);
 
     return (
         <div className="md:hidden">
@@ -34,7 +56,7 @@ export default function MobileHeader() {
 
             {/* Glassmorphism Icon Button (Sticky) */}
             <div className="fixed top-0 right-0 px-4 h-24 flex items-center z-50 pointer-events-none">
-                <div className="relative pointer-events-auto">
+                <div ref={menuRef} className="relative pointer-events-auto">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="cursor-pointer rounded-full border border-white/10 shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-white/10 relative overflow-hidden w-[46px] h-[46px]"
@@ -55,7 +77,7 @@ export default function MobileHeader() {
 
                     {/* Glassmorphism Dropdown */}
                     <div
-                        className={`absolute top-[56px] right-0 p-2 rounded-[20px] border border-white/10 shadow-2xl transition-all duration-300 transform origin-top-right ${isMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
+                        className={`absolute top-[56px] right-0 p-2 rounded-[20px] border border-white/10 shadow-2xl transition-all duration-300 transform origin-top-right ${isMenuOpen ? "scale-100 opacity-100 pointer-events-auto" : "scale-95 opacity-0 pointer-events-none"}`}
                         style={{
                             background: "rgba(30, 30, 30, 0.8)",
                             backdropFilter: "blur(20px)",
@@ -75,6 +97,8 @@ export default function MobileHeader() {
                                     <ArrowUpRight className="text-white/60 w-5 h-5 shrink-0" />
                                 </Link>
                             ))}
+                            <div className="h-px bg-white/10 my-0.5" />
+                            <AdminNavLink onClick={() => setIsMenuOpen(false)} isMobile />
                         </div>
                     </div>
                 </div>

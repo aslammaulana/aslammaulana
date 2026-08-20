@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { navLinks } from "./navLinks";
+import AdminNavLink from "./AdminNavLink";
 
 interface DesktopHeaderProps {
     scrolled: boolean;
@@ -14,6 +15,25 @@ interface DesktopHeaderProps {
 
 export default function DesktopHeader({ scrolled }: DesktopHeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isMenuOpen) return;
+
+        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("touchstart", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("touchstart", handleClickOutside);
+        };
+    }, [isMenuOpen]);
 
     return (
         <div className="hidden md:block pointer-events-none ">
@@ -42,7 +62,7 @@ export default function DesktopHeader({ scrolled }: DesktopHeaderProps) {
                 className="fixed top-0 left-0 w-full flex justify-center z-50 pt-6 pointer-events-none"
             >
                 <div className="w-full max-w-[1280px] px-6 pt-6 flex justify-end">
-                    <div className="relative pointer-events-auto">
+                    <div ref={menuRef} className="relative pointer-events-auto">
                         {/* Menu Button */}
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -94,6 +114,8 @@ export default function DesktopHeader({ scrolled }: DesktopHeaderProps) {
                                         <ArrowUpRight className="text-white/50 group-hover:text-white transition-colors w-[18px] h-[18px]" strokeWidth={2.5} />
                                     </Link>
                                 ))}
+                                <div className="h-px bg-white/10 my-0.5" />
+                                <AdminNavLink onClick={() => setIsMenuOpen(false)} />
                             </div>
                         </div>
                     </div>
