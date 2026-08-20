@@ -17,7 +17,7 @@ export default async function PortfolioSection() {
     return (
         <section
             id="work"
-            className="relative w-full py-10 overflow-hidden border-t border-t-[#ffffff21] bg-[#0e0f0f]"
+            className="relative w-full py-10 overflow-hidden border-t border-t-[#ffffff21] bg-[#111111]"
         >
             <div className="relative z-10 w-full max-w-[1230px] mx-auto px-4">
                 <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-10">
