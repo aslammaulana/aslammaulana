@@ -55,7 +55,7 @@ export default function HeroSection() {
                             Designer at Home. Based in Peukan Bada.
                         </p>
                         <p className="text-[18px] font-medium text-[#ffffff67] leading-snug tracking-tight">
-                            Formerly at Bed.
+                            Formerly...Not Yet, Hire Me?
                         </p>
                     </div>
                     {/* CTA buttons */}

@@ -79,7 +79,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 {/* ── Hero Image ── */}
                 <div
                     className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
-                    style={{ aspectRatio: "16/9" }}
+                    style={{ aspectRatio: "16/10" }}
                 >
                     <Image
                         src={images[0]}

@@ -5,10 +5,10 @@ export default function Footer() {
                 {/* Left */}
                 <div className="flex flex-col gap-1">
                     <p className="text-white/80 text-[15px] font-medium">
-                        © 2026 AslamMln. All Rights Reserved.
+                        © 2026 AslamMaulana. All Rights Reserved.
                     </p>
                     <p className="text-white/40 text-[13px]">
-                        Made with love and Sanger Coffee (0% extra sugar, no ice).
+                        Made with love and sanger coffee (0% extra sugar, no ice).
                     </p>
                 </div>
 
