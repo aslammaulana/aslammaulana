@@ -103,29 +103,47 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     </div>
                 </ScrollReveal>
 
-                {/* ── Meta Grid: 4 Boxes Berjejer ── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-                    {[
-                        { label: "KLIEN", value: item.client ?? "—" },
-                        { label: "PERAN", value: item.role ?? "Web Developer" },
-                        { label: "TAHUN", value: item.publishedAt ?? "—" },
-                        { label: "STATUS", value: item.status ?? "—" },
-                    ].map(({ label, value }, i) => (
-                        <ScrollReveal
-                            key={label}
-                            animation="fade-up"
-                            duration={600}
-                            delay={i * 80}
-                        >
+                {/* ── Meta Grid: [KLIEN, PERAN] and [TAHUN, STATUS] ── */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
+                    {/* Group 1: Klien & Peran */}
+                    <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
                             <div
                                 className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
                                 style={{ background: "rgba(255,255,255,0.03)" }}
                             >
-                                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">{label}</p>
-                                <p className="text-white font-semibold text-[15px] leading-snug">{value}</p>
+                                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">KLIEN</p>
+                                <p className="text-white font-semibold text-[15px] leading-snug">{item.client ?? "—"}</p>
                             </div>
-                        </ScrollReveal>
-                    ))}
+                            <div
+                                className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
+                                style={{ background: "rgba(255,255,255,0.03)" }}
+                            >
+                                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">PERAN</p>
+                                <p className="text-white font-semibold text-[15px] leading-snug">{item.role ?? "Web Developer"}</p>
+                            </div>
+                        </div>
+                    </ScrollReveal>
+
+                    {/* Group 2: Tahun & Status */}
+                    <ScrollReveal animation="fade-up" duration={600} delay={100}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+                            <div
+                                className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
+                                style={{ background: "rgba(255,255,255,0.03)" }}
+                            >
+                                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">TAHUN</p>
+                                <p className="text-white font-semibold text-[15px] leading-snug">{item.publishedAt ?? "—"}</p>
+                            </div>
+                            <div
+                                className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
+                                style={{ background: "rgba(255,255,255,0.03)" }}
+                            >
+                                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">STATUS</p>
+                                <p className="text-white font-semibold text-[15px] leading-snug">{item.status ?? "—"}</p>
+                            </div>
+                        </div>
+                    </ScrollReveal>
                 </div>
 
                 {/* ── Overview ── */}
@@ -145,16 +163,10 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     <div className="mt-12 pt-10 border-t border-white/8">
                         <ScrollReveal animation="fade-up" duration={600}>
                             <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Fitur Utama</p>
-                        </ScrollReveal>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {item.features.map((feat, i) => (
-                                <ScrollReveal
-                                    key={i}
-                                    animation="fade-up"
-                                    duration={500}
-                                    delay={i * 60}
-                                >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {item.features.map((feat, i) => (
                                     <div
+                                        key={i}
                                         className="flex items-start gap-3 px-5 py-4 rounded-xl border border-white/8 h-full"
                                         style={{ background: "rgba(255,255,255,0.03)" }}
                                     >
@@ -164,9 +176,9 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                                         />
                                         <span className="text-white/70 text-sm leading-relaxed">{feat}</span>
                                     </div>
-                                </ScrollReveal>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        </ScrollReveal>
                     </div>
                 )}
 
