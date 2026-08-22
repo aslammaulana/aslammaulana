@@ -7,6 +7,7 @@ import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import type { PortfolioItem } from "@/data/portfolio";
 import { portfolioItems } from "@/data/portfolio";
 import { Lightbox } from "@/components/homepage/portfolio/Lightbox";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -51,52 +52,56 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
             <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
 
                 {/* ── Project Header ── */}
-                <div className="pt-12 pb-10 border-b border-white/8">
-                    <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-3">
-                        {item.category}
-                    </p>
-                    <h1 className="text-3xl md:text-[40px] font-bold text-white leading-tight tracking-tight mb-4">
-                        {item.title}
-                    </h1>
-                    <p className="text-white/50 text-[16px] max-w-[800px] leading-relaxed">
-                        {item.overview ?? item.description}
-                    </p>
-                    {item.previewUrl && item.previewUrl !== "#" && (
-                        <div className="mt-6">
-                            <a
-                                href={item.previewUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200"
-                            >
-                                Kunjungi Website
-                                <ExternalLink size={14} />
-                            </a>
-                        </div>
-                    )}
-                </div>
+                <ScrollReveal animation="fade-up" duration={700} delay={0}>
+                    <div className="pt-12 pb-10 border-b border-white/8">
+                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-3">
+                            {item.category}
+                        </p>
+                        <h1 className="text-3xl md:text-[40px] font-bold text-white leading-tight tracking-tight mb-4">
+                            {item.title}
+                        </h1>
+                        <p className="text-white/50 text-[16px] max-w-[800px] leading-relaxed">
+                            {item.overview ?? item.description}
+                        </p>
+                        {item.previewUrl && item.previewUrl !== "#" && (
+                            <div className="mt-6">
+                                <a
+                                    href={item.previewUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200"
+                                >
+                                    Kunjungi Website
+                                    <ExternalLink size={14} />
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </ScrollReveal>
 
                 {/* ── Hero Image ── */}
-                <div
-                    className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
-                    style={{ aspectRatio: "16/10" }}
-                >
-                    <Image
-                        src={images[0]}
-                        alt={item.title}
-                        fill
-                        priority
-                        className="object-cover object-top"
-                        sizes="(max-width: 1200px) 100vw, 1200px"
-                    />
-                    {/* Subtle color overlay from item.color */}
+                <ScrollReveal animation="fade-up" duration={750} delay={100}>
                     <div
-                        className="absolute inset-0 pointer-events-none"
-                        style={{
-                            background: `radial-gradient(ellipse at top, #${item.color}22 0%, transparent 60%)`,
-                        }}
-                    />
-                </div>
+                        className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
+                        style={{ aspectRatio: "16/10" }}
+                    >
+                        <Image
+                            src={images[0]}
+                            alt={item.title}
+                            fill
+                            priority
+                            className="object-cover object-top"
+                            sizes="(max-width: 1200px) 100vw, 1200px"
+                        />
+                        {/* Subtle color overlay from item.color */}
+                        <div
+                            className="absolute inset-0 pointer-events-none"
+                            style={{
+                                background: `radial-gradient(ellipse at top, #${item.color}22 0%, transparent 60%)`,
+                            }}
+                        />
+                    </div>
+                </ScrollReveal>
 
                 {/* ── Meta Grid: 4 Boxes Berjejer ── */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
@@ -105,45 +110,61 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                         { label: "PERAN", value: item.role ?? "Web Developer" },
                         { label: "TAHUN", value: item.publishedAt ?? "—" },
                         { label: "STATUS", value: item.status ?? "—" },
-                    ].map(({ label, value }) => (
-                        <div
+                    ].map(({ label, value }, i) => (
+                        <ScrollReveal
                             key={label}
-                            className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20"
-                            style={{ background: "rgba(255,255,255,0.03)" }}
+                            animation="fade-up"
+                            duration={600}
+                            delay={i * 80}
                         >
-                            <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">{label}</p>
-                            <p className="text-white font-semibold text-[15px] leading-snug">{value}</p>
-                        </div>
+                            <div
+                                className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
+                                style={{ background: "rgba(255,255,255,0.03)" }}
+                            >
+                                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-white/40">{label}</p>
+                                <p className="text-white font-semibold text-[15px] leading-snug">{value}</p>
+                            </div>
+                        </ScrollReveal>
                     ))}
                 </div>
 
                 {/* ── Overview ── */}
                 {item.overview && (
-                    <div className="mt-12 pt-10 border-t border-white/8">
-                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-4">Tentang Proyek</p>
-                        <p className="text-white/60 leading-relaxed text-[15px] max-w-[900px]">
-                            {item.overview}
-                        </p>
-                    </div>
+                    <ScrollReveal animation="fade-up" duration={600}>
+                        <div className="mt-12 pt-10 border-t border-white/8">
+                            <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-4">Tentang Proyek</p>
+                            <p className="text-white/60 leading-relaxed text-[15px] max-w-[900px]">
+                                {item.overview}
+                            </p>
+                        </div>
+                    </ScrollReveal>
                 )}
 
                 {/* ── Features ── */}
                 {item.features && item.features.length > 0 && (
                     <div className="mt-12 pt-10 border-t border-white/8">
-                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Fitur Utama</p>
+                        <ScrollReveal animation="fade-up" duration={600}>
+                            <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Fitur Utama</p>
+                        </ScrollReveal>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {item.features.map((feat, i) => (
-                                <div
+                                <ScrollReveal
                                     key={i}
-                                    className="flex items-start gap-3 px-5 py-4 rounded-xl border border-white/8"
-                                    style={{ background: "rgba(255,255,255,0.03)" }}
+                                    animation="fade-up"
+                                    duration={500}
+                                    delay={i * 60}
                                 >
-                                    <span
-                                        className="mt-[5px] w-1.5 h-1.5 rounded-full shrink-0"
-                                        style={{ background: `#${item.color}` }}
-                                    />
-                                    <span className="text-white/70 text-sm leading-relaxed">{feat}</span>
-                                </div>
+                                    <div
+                                        className="flex items-start gap-3 px-5 py-4 rounded-xl border border-white/8 h-full"
+                                        style={{ background: "rgba(255,255,255,0.03)" }}
+                                    >
+                                        <span
+                                            className="mt-[5px] w-1.5 h-1.5 rounded-full shrink-0"
+                                            style={{ background: `#${item.color}` }}
+                                        />
+                                        <span className="text-white/70 text-sm leading-relaxed">{feat}</span>
+                                    </div>
+                                </ScrollReveal>
                             ))}
                         </div>
                     </div>
@@ -151,38 +172,46 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
 
                 {/* ── Tech Stack ── */}
                 {item.tags && item.tags.length > 0 && (
-                    <div className="mt-12 pt-10 border-t border-white/8">
-                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-5">Tech Stack</p>
-                        <div className="flex flex-wrap gap-2">
-                            {item.tags.map((tag, i) => (
-                                <span
-                                    key={i}
-                                    className="px-4 py-2 rounded-full text-sm font-medium border border-white/10 text-white/70"
-                                    style={{ background: `rgba(${parseInt(item.color.slice(0,2),16)}, ${parseInt(item.color.slice(2,4),16)}, ${parseInt(item.color.slice(4,6),16)}, 0.15)` }}
-                                >
-                                    {tag}
-                                </span>
-                            ))}
+                    <ScrollReveal animation="fade-up" duration={600}>
+                        <div className="mt-12 pt-10 border-t border-white/8">
+                            <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-5">Tech Stack</p>
+                            <div className="flex flex-wrap gap-2">
+                                {item.tags.map((tag, i) => (
+                                    <span
+                                        key={i}
+                                        className="px-4 py-2 rounded-full text-sm font-medium border border-white/10 text-white/70"
+                                        style={{ background: `rgba(${parseInt(item.color.slice(0, 2), 16)}, ${parseInt(item.color.slice(2, 4), 16)}, ${parseInt(item.color.slice(4, 6), 16)}, 0.15)` }}
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    </ScrollReveal>
                 )}
 
                 {/* ── Challenge & Solution ── */}
                 {(item.challenge || item.solution) && (
                     <div className="mt-12 pt-10 border-t border-white/8">
-                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Tantangan &amp; Solusi</p>
+                        <ScrollReveal animation="fade-up" duration={600}>
+                            <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Tantangan &amp; Solusi</p>
+                        </ScrollReveal>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {item.challenge && (
-                                <div className="p-5 rounded-xl border border-white/8" style={{ background: "rgba(255,255,255,0.03)" }}>
-                                    <p className="text-white font-semibold text-sm mb-3">Tantangan</p>
-                                    <p className="text-white/55 text-sm leading-relaxed">{item.challenge}</p>
-                                </div>
+                                <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                                    <div className="p-5 rounded-xl border border-white/8 h-full" style={{ background: "rgba(255,255,255,0.03)" }}>
+                                        <p className="text-white font-semibold text-sm mb-3">Tantangan</p>
+                                        <p className="text-white/55 text-sm leading-relaxed">{item.challenge}</p>
+                                    </div>
+                                </ScrollReveal>
                             )}
                             {item.solution && (
-                                <div className="p-5 rounded-xl border border-white/8" style={{ background: "rgba(255,255,255,0.03)" }}>
-                                    <p className="text-white font-semibold text-sm mb-3">Solusi</p>
-                                    <p className="text-white/55 text-sm leading-relaxed">{item.solution}</p>
-                                </div>
+                                <ScrollReveal animation="fade-up" duration={600} delay={100}>
+                                    <div className="p-5 rounded-xl border border-white/8 h-full" style={{ background: "rgba(255,255,255,0.03)" }}>
+                                        <p className="text-white font-semibold text-sm mb-3">Solusi</p>
+                                        <p className="text-white/55 text-sm leading-relaxed">{item.solution}</p>
+                                    </div>
+                                </ScrollReveal>
                             )}
                         </div>
                     </div>
@@ -191,58 +220,68 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 {/* ── Gallery ── */}
                 {images.length > 1 && (
                     <div className="mt-12 pt-10 border-t border-white/8">
-                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Galeri Screenshot</p>
+                        <ScrollReveal animation="fade-up" duration={600}>
+                            <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Galeri Screenshot</p>
+                        </ScrollReveal>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {images.map((src, i) => (
-                                <button
+                                <ScrollReveal
                                     key={i}
-                                    onClick={() => openLightbox(i)}
-                                    className="relative w-full rounded-xl overflow-hidden border border-white/10 group cursor-zoom-in focus:outline-none"
-                                    style={{ aspectRatio: "4/3" }}
-                                    aria-label={`Lihat screenshot ${i + 1}`}
+                                    animation="fade-up"
+                                    duration={600}
+                                    delay={(i % 3) * 100}
                                 >
-                                    <Image
-                                        src={src}
-                                        alt={`${item.title} screenshot ${i + 1}`}
-                                        fill
-                                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-                                        sizes="(max-width: 640px) 100vw, 33vw"
-                                    />
-                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-                                </button>
+                                    <button
+                                        onClick={() => openLightbox(i)}
+                                        className="relative w-full rounded-xl overflow-hidden border border-white/10 group cursor-zoom-in focus:outline-none"
+                                        style={{ aspectRatio: "4/3" }}
+                                        aria-label={`Lihat screenshot ${i + 1}`}
+                                    >
+                                        <Image
+                                            src={src}
+                                            alt={`${item.title} screenshot ${i + 1}`}
+                                            fill
+                                            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                                            sizes="(max-width: 640px) 100vw, 33vw"
+                                        />
+                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                                    </button>
+                                </ScrollReveal>
                             ))}
                         </div>
                     </div>
                 )}
 
                 {/* ── Prev / Next Nav ── */}
-                <div className="mt-16 pt-10 border-t border-white/8 flex items-center justify-between gap-4">
-                    {prevItem ? (
-                        <Link
-                            href={`/portfolio/${prevItem.slug}`}
-                            className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200 group"
-                        >
-                            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-200" />
-                            <span>
-                                <span className="block text-[11px] text-white/30 uppercase tracking-widest mb-0.5">Sebelumnya</span>
-                                {prevItem.title}
-                            </span>
-                        </Link>
-                    ) : <div />}
+                <ScrollReveal animation="fade-up" duration={600}>
+                    <div className="mt-16 pt-10 border-t border-white/8 flex items-center justify-between gap-4">
+                        {prevItem ? (
+                            <Link
+                                href={`/portfolio/${prevItem.slug}`}
+                                className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200 group"
+                            >
+                                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform duration-200" />
+                                <span>
+                                    <span className="block text-[11px] text-white/30 uppercase tracking-widest mb-0.5">Sebelumnya</span>
+                                    {prevItem.title}
+                                </span>
+                            </Link>
+                        ) : <div />}
 
-                    {nextItem ? (
-                        <Link
-                            href={`/portfolio/${nextItem.slug}`}
-                            className="flex items-center gap-2 text-right text-white/50 hover:text-white text-sm transition-colors duration-200 group ml-auto"
-                        >
-                            <span>
-                                <span className="block text-[11px] text-white/30 uppercase tracking-widest mb-0.5">Selanjutnya</span>
-                                {nextItem.title}
-                            </span>
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
-                        </Link>
-                    ) : <div />}
-                </div>
+                        {nextItem ? (
+                            <Link
+                                href={`/portfolio/${nextItem.slug}`}
+                                className="flex items-center gap-2 text-right text-white/50 hover:text-white text-sm transition-colors duration-200 group ml-auto"
+                            >
+                                <span>
+                                    <span className="block text-[11px] text-white/30 uppercase tracking-widest mb-0.5">Selanjutnya</span>
+                                    {nextItem.title}
+                                </span>
+                                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+                            </Link>
+                        ) : <div />}
+                    </div>
+                </ScrollReveal>
             </div>
 
             {/* ── Lightbox ── */}

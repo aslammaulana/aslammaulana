@@ -143,7 +143,7 @@ function AccordionItem({
 /* ─── Group Label ───────────────────────────────────────────── */
 function GroupLabel({ label, first }: { label: string; first?: boolean }) {
     return (
-        <p className={`text-sm font-bold tracking-[0.25em] uppercase text-white${first ? "" : " mt-10"}`}>
+        <p className={`text-sm font-bold tracking-[0.25em] uppercase text-white${first ? " mb-4" : " mt-10 mb-4"}`}>
             {label}
         </p>
     );
@@ -180,68 +180,54 @@ export default function ExperienceSection() {
                     {/* RIGHT: accordion groups */}
                     <div className="flex-1 flex flex-col gap-4">
 
-                        {/* EXPERIENCE */}
-                        <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                        {/* EXPERIENCE GROUP */}
+                        <ScrollReveal animation="fade-up" duration={700}>
                             <GroupLabel label="Experience" first />
+                            <div className="flex flex-col gap-4">
+                                {experienceItems.map((item, i) => (
+                                    <AccordionItem
+                                        key={`exp-${i}`}
+                                        logo={item.logo}
+                                        title={item.company}
+                                        subtitle={item.role}
+                                        period={item.period}
+                                        location={item.location}
+                                        points={item.points}
+                                        isOpen={openIndex === expOffset + i}
+                                        onToggle={() => toggle(expOffset + i)}
+                                    />
+                                ))}
+                            </div>
                         </ScrollReveal>
-                        {experienceItems.map((item, i) => (
-                            <ScrollReveal
-                                key={`exp-${i}`}
-                                animation="fade-up"
-                                duration={600}
-                                delay={i * 80}
-                            >
-                                <AccordionItem
-                                    logo={item.logo}
-                                    title={item.company}
-                                    subtitle={item.role}
-                                    period={item.period}
-                                    location={item.location}
-                                    points={item.points}
-                                    isOpen={openIndex === expOffset + i}
-                                    onToggle={() => toggle(expOffset + i)}
-                                />
-                            </ScrollReveal>
-                        ))}
 
-                        {/* COURSE / TRAINING */}
-                        <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                        {/* COURSE / TRAINING GROUP */}
+                        <ScrollReveal animation="fade-up" duration={700}>
                             <GroupLabel label="Course / Training" />
+                            <div className="flex flex-col gap-4">
+                                {trainingItems.map((item, i) => (
+                                    <AccordionItem
+                                        key={`train-${i}`}
+                                        logo={item.logo}
+                                        title={item.name}
+                                        subtitle={item.organizer}
+                                        period={item.period}
+                                        location={item.location}
+                                        points={item.points}
+                                        certificateUrl={item.certificateUrl}
+                                        isOpen={openIndex === trainOffset + i}
+                                        onToggle={() => toggle(trainOffset + i)}
+                                    />
+                                ))}
+                            </div>
                         </ScrollReveal>
-                        {trainingItems.map((item, i) => (
-                            <ScrollReveal
-                                key={`train-${i}`}
-                                animation="fade-up"
-                                duration={600}
-                                delay={i * 80}
-                            >
-                                <AccordionItem
-                                    logo={item.logo}
-                                    title={item.name}
-                                    subtitle={item.organizer}
-                                    period={item.period}
-                                    location={item.location}
-                                    points={item.points}
-                                    certificateUrl={item.certificateUrl}
-                                    isOpen={openIndex === trainOffset + i}
-                                    onToggle={() => toggle(trainOffset + i)}
-                                />
-                            </ScrollReveal>
-                        ))}
 
-                        {/* LANGUAGES */}
-                        <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                        {/* LANGUAGES GROUP */}
+                        <ScrollReveal animation="fade-up" duration={700}>
                             <GroupLabel label="Languages" />
-                        </ScrollReveal>
-                        <div className="flex flex-col gap-3">
-                            {languageItems.map((item, i) => (
-                                <ScrollReveal
-                                    key={`lang-${i}`}
-                                    animation="fade-up"
-                                    duration={500}
-                                    delay={i * 60}
-                                >
+                            <div className="flex flex-col gap-3">
+                                {languageItems.map((item, i) => (
                                     <div
+                                        key={`lang-${i}`}
                                         className="rounded-2xl border border-white/10 px-6 py-5 flex items-center gap-4"
                                         style={{
                                             background: "rgba(255,255,255,0.03)",
@@ -265,9 +251,9 @@ export default function ExperienceSection() {
                                             <p className="text-white/50 text-[14px]">{item.level}</p>
                                         </div>
                                     </div>
-                                </ScrollReveal>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        </ScrollReveal>
                     </div>
                 </div>
             </div>
