@@ -7,6 +7,7 @@ import { trainingItems } from "@/data/training";
 import { languageItems } from "@/data/profile";
 import { ChevronUp, ChevronDown, ExternalLink } from "lucide-react";
 import ProfileCard from "./ProfileCard";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 /* ─── Accordion Item ─────────────────────────────────────── */
 type AccordionItemProps = {
@@ -171,74 +172,100 @@ export default function ExperienceSection() {
 
                     {/* LEFT: sticky ProfileCard */}
                     <div className="hidden lg:block w-[280px] shrink-0 sticky top-6">
-                        <ProfileCard />
+                        <ScrollReveal animation="fade-right" duration={700} delay={100}>
+                            <ProfileCard />
+                        </ScrollReveal>
                     </div>
 
                     {/* RIGHT: accordion groups */}
                     <div className="flex-1 flex flex-col gap-4">
 
                         {/* EXPERIENCE */}
-                        <GroupLabel label="Experience" first />
+                        <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                            <GroupLabel label="Experience" first />
+                        </ScrollReveal>
                         {experienceItems.map((item, i) => (
-                            <AccordionItem
+                            <ScrollReveal
                                 key={`exp-${i}`}
-                                logo={item.logo}
-                                title={item.company}
-                                subtitle={item.role}
-                                period={item.period}
-                                location={item.location}
-                                points={item.points}
-                                isOpen={openIndex === expOffset + i}
-                                onToggle={() => toggle(expOffset + i)}
-                            />
+                                animation="fade-up"
+                                duration={600}
+                                delay={i * 80}
+                            >
+                                <AccordionItem
+                                    logo={item.logo}
+                                    title={item.company}
+                                    subtitle={item.role}
+                                    period={item.period}
+                                    location={item.location}
+                                    points={item.points}
+                                    isOpen={openIndex === expOffset + i}
+                                    onToggle={() => toggle(expOffset + i)}
+                                />
+                            </ScrollReveal>
                         ))}
 
                         {/* COURSE / TRAINING */}
-                        <GroupLabel label="Course / Training" />
+                        <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                            <GroupLabel label="Course / Training" />
+                        </ScrollReveal>
                         {trainingItems.map((item, i) => (
-                            <AccordionItem
+                            <ScrollReveal
                                 key={`train-${i}`}
-                                logo={item.logo}
-                                title={item.name}
-                                subtitle={item.organizer}
-                                period={item.period}
-                                location={item.location}
-                                points={item.points}
-                                certificateUrl={item.certificateUrl}
-                                isOpen={openIndex === trainOffset + i}
-                                onToggle={() => toggle(trainOffset + i)}
-                            />
+                                animation="fade-up"
+                                duration={600}
+                                delay={i * 80}
+                            >
+                                <AccordionItem
+                                    logo={item.logo}
+                                    title={item.name}
+                                    subtitle={item.organizer}
+                                    period={item.period}
+                                    location={item.location}
+                                    points={item.points}
+                                    certificateUrl={item.certificateUrl}
+                                    isOpen={openIndex === trainOffset + i}
+                                    onToggle={() => toggle(trainOffset + i)}
+                                />
+                            </ScrollReveal>
                         ))}
 
                         {/* LANGUAGES */}
-                        <GroupLabel label="Languages" />
+                        <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                            <GroupLabel label="Languages" />
+                        </ScrollReveal>
                         <div className="flex flex-col gap-3">
                             {languageItems.map((item, i) => (
-                                <div
+                                <ScrollReveal
                                     key={`lang-${i}`}
-                                    className="rounded-2xl border border-white/10 px-6 py-5 flex items-center gap-4"
-                                    style={{
-                                        background: "rgba(255,255,255,0.03)",
-                                        backdropFilter: "blur(8px)",
-                                        WebkitBackdropFilter: "blur(8px)",
-                                    }}
+                                    animation="fade-up"
+                                    duration={500}
+                                    delay={i * 60}
                                 >
-                                    {/* Flag */}
-                                    <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden flex items-center justify-center">
-                                        <Image
-                                            src={item.flag}
-                                            alt={item.language}
-                                            width={40}
-                                            height={40}
-                                            className="object-cover w-full h-full"
-                                        />
+                                    <div
+                                        className="rounded-2xl border border-white/10 px-6 py-5 flex items-center gap-4"
+                                        style={{
+                                            background: "rgba(255,255,255,0.03)",
+                                            backdropFilter: "blur(8px)",
+                                            WebkitBackdropFilter: "blur(8px)",
+                                        }}
+                                    >
+                                        {/* Flag */}
+                                        <div className="w-10 h-10 shrink-0 rounded-lg overflow-hidden flex items-center justify-center">
+                                            <Image
+                                                src={item.flag}
+                                                alt={item.language}
+                                                width={40}
+                                                height={40}
+                                                className="object-cover w-full h-full"
+                                            />
+                                        </div>
+                                        {/* Language + level */}
+                                        <div className="flex flex-col gap-0.5 flex-1 min-w-0">
+                                            <p className="text-white font-bold text-[15px] leading-snug">{item.language}</p>
+                                            <p className="text-white/50 text-[14px]">{item.level}</p>
+                                        </div>
                                     </div>
-                                    {/* Language + level */}
-                                    <div className="flex flex-col gap-0.5 flex-1 min-w-0">
-                                        <p className="text-white font-bold text-[15px] leading-snug">{item.language}</p>
-                                        <p className="text-white/50 text-[14px]">{item.level}</p>
-                                    </div>
-                                </div>
+                                </ScrollReveal>
                             ))}
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 import { skillItems } from "@/data/skills";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function SkillsSection() {
     const programmingSkills = skillItems.filter((s) => s.category === "programming");
@@ -11,31 +12,41 @@ export default function SkillsSection() {
         >
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
                 {/* Heading */}
-                <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-6">
-                    Skills
-                </h2>
+                <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                    <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-6">
+                        Skills
+                    </h2>
+                </ScrollReveal>
 
                 {/* Programming Pills */}
                 <div className="flex flex-wrap gap-3 mb-3">
                     {programmingSkills.map((skill, i) => (
-                        <span
+                        <ScrollReveal
                             key={i}
-                            className="px-4 py-2 rounded-full text-sm font-medium bg-white/[0.07] border border-white/15 text-white/80"
+                            animation="fade-up"
+                            duration={500}
+                            delay={i * 40}
                         >
-                            {skill.name}
-                        </span>
+                            <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-white/[0.07] border border-white/15 text-white/80">
+                                {skill.name}
+                            </span>
+                        </ScrollReveal>
                     ))}
                 </div>
 
                 {/* Design Pills */}
                 <div className="flex flex-wrap gap-3">
                     {designSkills.map((skill, i) => (
-                        <span
+                        <ScrollReveal
                             key={i}
-                            className="px-4 py-2 rounded-full text-sm font-medium bg-[#0c47789d] border border-white/15 text-white/80"
+                            animation="fade-up"
+                            duration={500}
+                            delay={(programmingSkills.length + i) * 40}
                         >
-                            {skill.name}
-                        </span>
+                            <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-[#0c47789d] border border-white/15 text-white/80">
+                                {skill.name}
+                            </span>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>
