@@ -31,7 +31,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
             <section
                 className="relative w-full border-b border-white/8 overflow-hidden"
                 style={{
-                    background: `radial-gradient(circle at 50% 0%, #${accentColor}100% 0%, #0f0e0f 75%)`,
+                    background: `radial-gradient(circle at 50% 0%, #${accentColor}FF 0%, #0f0e0f 75%)`,
                 }}
             >
                 {/* Subtle top rim light */}
