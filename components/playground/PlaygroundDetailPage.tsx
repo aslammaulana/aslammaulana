@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, Github, Sparkles, Layers } from "l
 import type { PlaygroundItem } from "@/data/playground";
 import { Lightbox } from "@/components/homepage/portfolio/Lightbox";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import Header from "@/components/theme/Header";
+import DetailNavHeader from "@/components/theme/DetailNavHeader";
 
 export default function PlaygroundDetailPage({
     item,
@@ -32,8 +32,8 @@ export default function PlaygroundDetailPage({
 
     return (
         <div className="min-h-screen bg-[#0f0e0f]">
-            {/* ── Glassmorphism Header (Sticky Menu Dropdown & Logo) ── */}
-            <Header />
+            {/* ── Sticky Top Nav: Back Button (Left) & Glassmorphism Menu Dropdown (Right) at 1200px ── */}
+            <DetailNavHeader backHref="/#playground" />
 
             {/* ── Top Hero Section with Radial Gradient ── */}
             <section
@@ -52,19 +52,8 @@ export default function PlaygroundDetailPage({
                     }}
                 />
 
-                {/* Back Button Container — Width 1200px */}
-                <div className="w-full max-w-[1200px] mx-auto px-4 pt-28 sm:pt-32 pb-4">
-                    <Link
-                        href="/#playground"
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/10 text-white text-sm font-medium hover:bg-white/20 hover:border-white/30 transition-all duration-200 shadow-sm"
-                    >
-                        <ArrowLeft size={16} />
-                        Back
-                    </Link>
-                </div>
-
                 {/* Hero Content — Width 1000px */}
-                <div className="w-full max-w-[1000px] mx-auto px-4 pt-2 pb-14 flex flex-col">
+                <div className="w-full max-w-[1000px] mx-auto px-4 pt-28 sm:pt-32 pb-14 flex flex-col">
 
                     {/* 1. Kategori (40px) */}
                     <ScrollReveal animation="fade-up" duration={700} delay={0}>
