@@ -1,4 +1,4 @@
-## Hi, I'm Aslam - Web Developer & AI Automation Engineer!
+Web Developer & AI Automation Engineer!
 
 Crafting meaningful digital experiences that move your business forward. Based in Aceh Besar, Indonesia.
 
