@@ -172,7 +172,7 @@ export default function ExperienceSection() {
 
                     {/* LEFT: sticky ProfileCard */}
                     <div className="hidden lg:block w-[280px] shrink-0 sticky top-6">
-                        <ScrollReveal animation="fade-right" duration={700} delay={100}>
+                        <ScrollReveal animation="fade-right" duration={800} delay={100}>
                             <ProfileCard />
                         </ScrollReveal>
                     </div>
@@ -181,7 +181,7 @@ export default function ExperienceSection() {
                     <div className="flex-1 flex flex-col gap-4">
 
                         {/* EXPERIENCE GROUP */}
-                        <ScrollReveal animation="fade-up" duration={700}>
+                        <ScrollReveal animation="fade-up" duration={800}>
                             <GroupLabel label="Experience" first />
                             <div className="flex flex-col gap-4">
                                 {experienceItems.map((item, i) => (
@@ -201,7 +201,7 @@ export default function ExperienceSection() {
                         </ScrollReveal>
 
                         {/* COURSE / TRAINING GROUP */}
-                        <ScrollReveal animation="fade-up" duration={700}>
+                        <ScrollReveal animation="fade-up" duration={800}>
                             <GroupLabel label="Course / Training" />
                             <div className="flex flex-col gap-4">
                                 {trainingItems.map((item, i) => (
@@ -222,7 +222,7 @@ export default function ExperienceSection() {
                         </ScrollReveal>
 
                         {/* LANGUAGES GROUP */}
-                        <ScrollReveal animation="fade-up" duration={700}>
+                        <ScrollReveal animation="fade-up" duration={800}>
                             <GroupLabel label="Languages" />
                             <div className="flex flex-col gap-3">
                                 {languageItems.map((item, i) => (

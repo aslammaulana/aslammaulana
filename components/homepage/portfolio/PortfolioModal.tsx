@@ -20,7 +20,7 @@ export function PortfolioModal({
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const images = item.images?.length ? item.images : [item.image];
+    const images = (item.images?.length ? item.images : [item.image]).filter(Boolean);
 
     const clearAuto = useCallback(() => {
         if (intervalRef.current) clearInterval(intervalRef.current);

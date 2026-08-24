@@ -7,10 +7,11 @@ export type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right'
 export interface ScrollRevealProps {
   children: React.ReactNode;
   animation?: AnimationType;
-  duration?: number;   // dalam ms (default: 700)
+  duration?: number;   // dalam ms (default: 800)
   delay?: number;      // dalam ms (default: 0)
-  distance?: string;   // jarak pergeseran (default: '30px')
-  threshold?: number;  // 0.0 - 1.0 (default: 0.15)
+  distance?: string;   // jarak pergeseran (default: '50px')
+  threshold?: number;  // 0.0 - 1.0 (default: 0)
+  rootMargin?: string; // default: '0px 0px -50px 0px' (sama seperti margin: "-50px" fariesky)
   once?: boolean;      // default: true
   className?: string;  // styling tambahan
   as?: React.ElementType; // default: 'div'
@@ -19,10 +20,11 @@ export interface ScrollRevealProps {
 export default function ScrollReveal({
   children,
   animation = 'fade-up',
-  duration = 700,
+  duration = 800,
   delay = 0,
-  distance = '30px',
-  threshold = 0.15,
+  distance = '50px',
+  threshold = 0,
+  rootMargin = '0px 0px -50px 0px',
   once = true,
   className = '',
   as: Component = 'div',
@@ -52,7 +54,7 @@ export default function ScrollReveal({
           setIsVisible(false);
         }
       },
-      { threshold }
+      { threshold, rootMargin }
     );
 
     const currentElement = domRef.current;
@@ -63,7 +65,7 @@ export default function ScrollReveal({
     return () => {
       if (currentElement) observer.unobserve(currentElement);
     };
-  }, [threshold, once]);
+  }, [threshold, rootMargin, once]);
 
   // 3. Mapping kalkulasi transform awal
   const getInitialTransform = () => {
@@ -77,13 +79,16 @@ export default function ScrollReveal({
     }
   };
 
+  // Opacity berdurasi 1000ms (1.25x transform duration) dengan ease-in-out persis seperti fariesky
+  const opacityDuration = Math.round(duration * 1.25);
+
   const animationStyle: React.CSSProperties = {
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? 'translate3d(0, 0, 0)' : getInitialTransform(),
     transitionProperty: 'opacity, transform',
-    transitionDuration: `${duration}ms`,
-    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)', // Smooth ease-out
-    transitionDelay: `${delay}ms`,
+    transitionDuration: `${opacityDuration}ms, ${duration}ms`,
+    transitionTimingFunction: 'ease-in-out, cubic-bezier(0.21, 0.47, 0.32, 0.98)', // Kurva identik dengan fariesky
+    transitionDelay: `${delay}ms, ${delay}ms`,
     willChange: isVisible ? 'auto' : 'opacity, transform',
   };
 

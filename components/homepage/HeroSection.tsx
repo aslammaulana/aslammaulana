@@ -41,7 +41,7 @@ export default function HeroSection() {
                     />
 
                     {/* Heading */}
-                    <ScrollReveal animation="fade-up" duration={700} delay={0}>
+                    <ScrollReveal animation="fade-up" duration={800} delay={0}>
                         <div className="flex flex-col gap-1">
                             <h1 className="text-[30px] lg:text-[43px] font-semibold text-white leading-snug tracking-tight">
                                 Crafting meaningful digital experiences that move your
@@ -62,7 +62,7 @@ export default function HeroSection() {
                     </ScrollReveal>
 
                     {/* Desc */}
-                    <ScrollReveal animation="fade-up" duration={700} delay={150}>
+                    <ScrollReveal animation="fade-up" duration={800} delay={150}>
                         <div className="flex flex-col gap-1.5">
                             <p className="text-[18px] font-medium text-white leading-snug tracking-tight">
                                 Designer at Home. Based in Peukan Bada.
@@ -74,7 +74,7 @@ export default function HeroSection() {
                     </ScrollReveal>
 
                     {/* CTA & Socials */}
-                    <ScrollReveal animation="fade-up" duration={700} delay={250}>
+                    <ScrollReveal animation="fade-up" duration={800} delay={250}>
                         {/* CTA buttons */}
                         <div className="flex items-center gap-4 flex-wrap mt-3">
                             <Link

@@ -21,7 +21,7 @@ export default async function PortfolioSection() {
             className="relative w-full py-10 overflow-hidden border-t border-t-[#ffffff21] bg-[#111111]"
         >
             <div className="relative z-10 w-full max-w-[1230px] mx-auto px-4">
-                <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                <ScrollReveal animation="fade-up" duration={800} delay={0}>
                     <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-10">
                         Selected Portofolio
                     </h2>
@@ -32,7 +32,7 @@ export default async function PortfolioSection() {
                         <ScrollReveal
                             key={item.slug || index}
                             animation="fade-up"
-                            duration={600}
+                            duration={800}
                             delay={(index % 3) * 120}
                         >
                             <PortfolioCard item={item} />

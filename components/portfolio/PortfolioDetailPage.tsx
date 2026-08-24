@@ -13,7 +13,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
-    const images = item.images?.length ? item.images : [item.image];
+    const images = (item.images?.length ? item.images : [item.image]).filter(Boolean);
     const currentIndex = portfolioItems.findIndex((p) => p.slug === item.slug);
     const prevItem = currentIndex > 0 ? portfolioItems[currentIndex - 1] : null;
     const nextItem = currentIndex < portfolioItems.length - 1 ? portfolioItems[currentIndex + 1] : null;
@@ -52,7 +52,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
             <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
 
                 {/* ── Project Header ── */}
-                <ScrollReveal animation="fade-up" duration={700} delay={0}>
+                <ScrollReveal animation="fade-up" duration={800} delay={0}>
                     <div className="pt-12 pb-10 border-b border-white/8">
                         <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-3">
                             {item.category}
@@ -80,33 +80,35 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 </ScrollReveal>
 
                 {/* ── Hero Image ── */}
-                <ScrollReveal animation="fade-up" duration={750} delay={100}>
-                    <div
-                        className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
-                        style={{ aspectRatio: "16/10" }}
-                    >
-                        <Image
-                            src={images[0]}
-                            alt={item.title}
-                            fill
-                            priority
-                            className="object-cover object-top"
-                            sizes="(max-width: 1200px) 100vw, 1200px"
-                        />
-                        {/* Subtle color overlay from item.color */}
+                {images[0] && (
+                    <ScrollReveal animation="fade-up" duration={800} delay={100}>
                         <div
-                            className="absolute inset-0 pointer-events-none"
-                            style={{
-                                background: `radial-gradient(ellipse at top, #${item.color}22 0%, transparent 60%)`,
-                            }}
-                        />
-                    </div>
-                </ScrollReveal>
+                            className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
+                            style={{ aspectRatio: "16/10" }}
+                        >
+                            <Image
+                                src={images[0]}
+                                alt={item.title}
+                                fill
+                                priority
+                                className="object-cover object-top"
+                                sizes="(max-width: 1200px) 100vw, 1200px"
+                            />
+                            {/* Subtle color overlay from item.color */}
+                            <div
+                                className="absolute inset-0 pointer-events-none"
+                                style={{
+                                    background: `radial-gradient(ellipse at top, #${item.color}22 0%, transparent 60%)`,
+                                }}
+                            />
+                        </div>
+                    </ScrollReveal>
+                )}
 
                 {/* ── Meta Grid: [KLIEN, PERAN] and [TAHUN, STATUS] ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
                     {/* Group 1: Klien & Peran */}
-                    <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                    <ScrollReveal animation="fade-up" duration={800} delay={0}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
                             <div
                                 className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
@@ -126,7 +128,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     </ScrollReveal>
 
                     {/* Group 2: Tahun & Status */}
-                    <ScrollReveal animation="fade-up" duration={600} delay={100}>
+                    <ScrollReveal animation="fade-up" duration={800} delay={100}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
                             <div
                                 className="flex flex-col justify-between gap-2.5 p-5 rounded-2xl border border-white/10 transition-all duration-200 hover:border-white/20 h-full"
@@ -148,7 +150,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
 
                 {/* ── Overview ── */}
                 {item.overview && (
-                    <ScrollReveal animation="fade-up" duration={600}>
+                    <ScrollReveal animation="fade-up" duration={800}>
                         <div className="mt-12 pt-10 border-t border-white/8">
                             <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-4">Tentang Proyek</p>
                             <p className="text-white/60 leading-relaxed text-[15px] max-w-[900px]">
@@ -161,7 +163,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 {/* ── Features ── */}
                 {item.features && item.features.length > 0 && (
                     <div className="mt-12 pt-10 border-t border-white/8">
-                        <ScrollReveal animation="fade-up" duration={600}>
+                        <ScrollReveal animation="fade-up" duration={800}>
                             <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Fitur Utama</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 {item.features.map((feat, i) => (
@@ -184,7 +186,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
 
                 {/* ── Tech Stack ── */}
                 {item.tags && item.tags.length > 0 && (
-                    <ScrollReveal animation="fade-up" duration={600}>
+                    <ScrollReveal animation="fade-up" duration={800}>
                         <div className="mt-12 pt-10 border-t border-white/8">
                             <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-5">Tech Stack</p>
                             <div className="flex flex-wrap gap-2">
@@ -205,12 +207,12 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 {/* ── Challenge & Solution ── */}
                 {(item.challenge || item.solution) && (
                     <div className="mt-12 pt-10 border-t border-white/8">
-                        <ScrollReveal animation="fade-up" duration={600}>
+                        <ScrollReveal animation="fade-up" duration={800}>
                             <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Tantangan &amp; Solusi</p>
                         </ScrollReveal>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {item.challenge && (
-                                <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                                <ScrollReveal animation="fade-up" duration={800} delay={0}>
                                     <div className="p-5 rounded-xl border border-white/8 h-full" style={{ background: "rgba(255,255,255,0.03)" }}>
                                         <p className="text-white font-semibold text-sm mb-3">Tantangan</p>
                                         <p className="text-white/55 text-sm leading-relaxed">{item.challenge}</p>
@@ -218,7 +220,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                                 </ScrollReveal>
                             )}
                             {item.solution && (
-                                <ScrollReveal animation="fade-up" duration={600} delay={100}>
+                                <ScrollReveal animation="fade-up" duration={800} delay={100}>
                                     <div className="p-5 rounded-xl border border-white/8 h-full" style={{ background: "rgba(255,255,255,0.03)" }}>
                                         <p className="text-white font-semibold text-sm mb-3">Solusi</p>
                                         <p className="text-white/55 text-sm leading-relaxed">{item.solution}</p>
@@ -232,7 +234,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 {/* ── Gallery ── */}
                 {images.length > 1 && (
                     <div className="mt-12 pt-10 border-t border-white/8">
-                        <ScrollReveal animation="fade-up" duration={600}>
+                        <ScrollReveal animation="fade-up" duration={800}>
                             <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-6">Galeri Screenshot</p>
                         </ScrollReveal>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -240,7 +242,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                                 <ScrollReveal
                                     key={i}
                                     animation="fade-up"
-                                    duration={600}
+                                    duration={800}
                                     delay={(i % 3) * 100}
                                 >
                                     <button
@@ -265,7 +267,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 )}
 
                 {/* ── Prev / Next Nav ── */}
-                <ScrollReveal animation="fade-up" duration={600}>
+                <ScrollReveal animation="fade-up" duration={800}>
                     <div className="mt-16 pt-10 border-t border-white/8 flex items-center justify-between gap-4">
                         {prevItem ? (
                             <Link

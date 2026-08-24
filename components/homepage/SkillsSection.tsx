@@ -12,14 +12,14 @@ export default function SkillsSection() {
         >
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4">
                 {/* 1. Text: Skills */}
-                <ScrollReveal animation="fade-up" duration={600} delay={0}>
+                <ScrollReveal animation="fade-up" duration={800} delay={0}>
                     <h2 className="text-sm font-bold tracking-[0.25em] uppercase text-white mb-6">
                         Skills
                     </h2>
                 </ScrollReveal>
 
                 {/* 2. Tag Category: Programming */}
-                <ScrollReveal animation="fade-up" duration={600} delay={100}>
+                <ScrollReveal animation="fade-up" duration={800} delay={100}>
                     <div className="flex flex-wrap gap-3 mb-3">
                         {programmingSkills.map((skill, i) => (
                             <span
@@ -33,7 +33,7 @@ export default function SkillsSection() {
                 </ScrollReveal>
 
                 {/* 3. Tag Category: Design */}
-                <ScrollReveal animation="fade-up" duration={600} delay={200}>
+                <ScrollReveal animation="fade-up" duration={800} delay={200}>
                     <div className="flex flex-wrap gap-3">
                         {designSkills.map((skill, i) => (
                             <span

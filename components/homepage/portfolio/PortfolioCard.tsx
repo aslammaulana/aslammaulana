@@ -84,12 +84,26 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
                         className="relative mx-[17px] mb-[-1px]  rounded-t-[11px] overflow-hidden border border-white/10"
                         style={{ aspectRatio: "16/10" }}
                     >
-                        <Image
-                            src={item.image}
-                            alt={item.title}
-                            fill
-                            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                            sizes="(max-width: 640px) 100vw, 33vw"
+                        {item.image ? (
+                            <Image
+                                src={item.image}
+                                alt={item.title || "Portfolio preview"}
+                                fill
+                                className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                                sizes="(max-width: 640px) 100vw, 33vw"
+                            />
+                        ) : (
+                            <div className="w-full h-full bg-white/5 flex items-center justify-center text-white/30 text-xs">
+                                No image preview
+                            </div>
+                        )}
+                        {/* Bottom fade gradient (#1B1B1B to transparent) */}
+                        <div
+                            className="absolute bottom-0 left-0 right-0 pointer-events-none z-10"
+                            style={{
+                                height: "40%",
+                                background: "linear-gradient(to top, #1B1B1B 0%, rgba(27, 27, 27, 0.6) 50%, transparent 100%)",
+                            }}
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
                     </div>

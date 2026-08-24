@@ -3,7 +3,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 export default function Footer() {
     return (
         <footer className="w-full border-t border-t-[#ffffff21] bg-[#0c0d0d] py-6">
-            <ScrollReveal animation="fade" duration={600} threshold={0.1}>
+            <ScrollReveal animation="fade" duration={800} threshold={0.1}>
                 <div className="w-full max-w-[1200px] mx-auto px-4 grid grid-cols-1 md:flex md:items-baseline md:justify-between gap-4">
                     {/* Left */}
                     <div className="flex flex-col gap-1">
