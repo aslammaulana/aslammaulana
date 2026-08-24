@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import AdminHeader from "@/components/admin/AdminHeader";
+import AdminShell from "@/components/admin/AdminShell";
 
 export const metadata = {
-    title: "Admin — AslamMln",
+    title: "Admin Dashboard — AslamMln",
 };
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -13,11 +13,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
     if (!user) redirect("/admin/login");
 
     return (
-        <div className="min-h-screen bg-[#0f0e0f]">
-            <AdminHeader email={user.email ?? ""} />
-            <main className="w-full max-w-[1200px] mx-auto px-4 py-8">
-                {children}
-            </main>
-        </div>
+        <AdminShell email={user.email ?? ""}>
+            {children}
+        </AdminShell>
     );
 }
+
