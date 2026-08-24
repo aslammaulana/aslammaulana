@@ -6,12 +6,15 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function HeroSection() {
     return (
-        <section
-            className="relative p-3 flex items-center pt-16 overflow-hidden"
-            style={{
-                background: "radial-gradient(ellipse at 50% 0%, #2d2d2d 0%, #181818 40%, #080808 100%)",
-            }}
-        >
+        <section className="relative p-3 flex items-center pt-16 overflow-hidden bg-[#080808]">
+            {/* Desktop & Tablet Radial Gradient (Keseluruhan Section) */}
+            <div
+                className="absolute inset-0 pointer-events-none hidden md:block z-0"
+                style={{
+                    background: "radial-gradient(ellipse at 50% 0%, #2d2d2d 0%, #181818 40%, #080808 100%)",
+                }}
+            />
+
             {/* Noise Overlay */}
             <div
                 className="absolute inset-0 pointer-events-none z-0"
@@ -28,7 +31,14 @@ export default function HeroSection() {
 
             <div className="relative z-10 w-full max-w-[1200px]  mx-auto px-1 grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-12 items-center py-17">
                 {/* ======================== KOLOM KIRI ======================== */}
-                <div className="flex flex-col gap-6">
+                <div className="relative flex flex-col gap-6">
+                    {/* Mobile-only Radial Gradient (Hanya di Kolom Kiri saat Mobile) */}
+                    <div
+                        className="absolute -inset-x-4 -top-12 -bottom-6 pointer-events-none md:hidden -z-10"
+                        style={{
+                            background: "radial-gradient(ellipse at 50% 0%, #2d2d2d 0%, #181818 55%, transparent 100%)",
+                        }}
+                    />
 
                     {/* Heading */}
                     <ScrollReveal animation="fade-up" duration={700} delay={0}>
