@@ -24,7 +24,7 @@ export type PlaygroundFormData = {
 
 type Props = {
     defaultValues?: Partial<PlaygroundFormData>;
-    onSubmit: (data: PlaygroundFormData) => Promise<void>;
+    onSubmit: (data: PlaygroundFormData) => Promise<{ success?: boolean; error?: string } | void>;
     submitLabel?: string;
     isEdit?: boolean;
 };
@@ -194,7 +194,6 @@ export default function PlaygroundForm({ defaultValues, onSubmit, submitLabel = 
         }
     };
 
-    /* ── Submit ── */
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!form.title.trim() || !form.slug.trim()) {
@@ -204,9 +203,16 @@ export default function PlaygroundForm({ defaultValues, onSubmit, submitLabel = 
         setError(null);
         setIsPending(true);
         try {
-            await onSubmit(form);
+            const res = await onSubmit(form);
+            if (res && res.error) {
+                setError(res.error);
+                setIsPending(false);
+            }
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Terjadi kesalahan.");
+            if (err instanceof Error && (err.message.includes("NEXT_REDIRECT") || (err as unknown as { digest?: string }).digest?.includes("NEXT_REDIRECT"))) {
+                return;
+            }
+            setError(err instanceof Error ? err.message : "Terjadi kesalahan saat menyimpan.");
             setIsPending(false);
         }
     };

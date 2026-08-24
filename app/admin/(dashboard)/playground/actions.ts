@@ -100,21 +100,25 @@ export async function uploadPlaygroundImage(
     }
 }
 
-export async function createPlaygroundItem(data: PlaygroundFormData) {
+export async function createPlaygroundItem(data: PlaygroundFormData): Promise<{ success?: boolean; error?: string } | void> {
     const supabase = createAdminClient();
     const { error } = await supabase.from("playground_items").insert(toDbRow(data));
-    if (error) throw new Error(error.message);
+    if (error) {
+        return { success: false, error: error.message };
+    }
     revalidateAll();
     redirect("/admin/playground");
 }
 
-export async function updatePlaygroundItem(id: string, data: PlaygroundFormData) {
+export async function updatePlaygroundItem(id: string, data: PlaygroundFormData): Promise<{ success?: boolean; error?: string } | void> {
     const supabase = createAdminClient();
     const { error } = await supabase
         .from("playground_items")
         .update(toDbRow(data))
         .eq("id", id);
-    if (error) throw new Error(error.message);
+    if (error) {
+        return { success: false, error: error.message };
+    }
     revalidateAll();
     redirect("/admin/playground");
 }

@@ -105,21 +105,25 @@ export async function uploadPortfolioImage(
     }
 }
 
-export async function createPortfolioItem(data: PortfolioFormData) {
+export async function createPortfolioItem(data: PortfolioFormData): Promise<{ success?: boolean; error?: string } | void> {
     const supabase = createAdminClient();
     const { error } = await supabase.from("portfolio_items").insert(toDbRow(data));
-    if (error) throw new Error(error.message);
+    if (error) {
+        return { success: false, error: error.message };
+    }
     revalidateAll();
     redirect("/admin");
 }
 
-export async function updatePortfolioItem(id: string, data: PortfolioFormData) {
+export async function updatePortfolioItem(id: string, data: PortfolioFormData): Promise<{ success?: boolean; error?: string } | void> {
     const supabase = createAdminClient();
     const { error } = await supabase
         .from("portfolio_items")
         .update(toDbRow(data))
         .eq("id", id);
-    if (error) throw new Error(error.message);
+    if (error) {
+        return { success: false, error: error.message };
+    }
     revalidateAll();
     redirect("/admin");
 }

@@ -30,7 +30,7 @@ export type PortfolioFormData = {
 
 type Props = {
     defaultValues?: Partial<PortfolioFormData>;
-    onSubmit: (data: PortfolioFormData) => Promise<void>;
+    onSubmit: (data: PortfolioFormData) => Promise<{ success?: boolean; error?: string } | void>;
     submitLabel?: string;
     isEdit?: boolean;
 };
@@ -207,9 +207,16 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
         setError(null);
         setIsPending(true);
         try {
-            await onSubmit(form);
+            const res = await onSubmit(form);
+            if (res && res.error) {
+                setError(res.error);
+                setIsPending(false);
+            }
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Terjadi kesalahan.");
+            if (err instanceof Error && (err.message.includes("NEXT_REDIRECT") || (err as unknown as { digest?: string }).digest?.includes("NEXT_REDIRECT"))) {
+                return;
+            }
+            setError(err instanceof Error ? err.message : "Terjadi kesalahan saat menyimpan.");
             setIsPending(false);
         }
     };
