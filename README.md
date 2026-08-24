@@ -1,6 +1,7 @@
-## Hi, I'm Aslam 👋 — Web Developer & AI Automation Engineer!
+# Hi, I'm Aslam - Web Developer & AI Automation Engineer!
 
-Crafting meaningful digital experiences that move your business forward. Based in Aceh Besar, Indonesia.
+### *Crafting meaningful digital experiences that move your business forward.*
+📍 **Based in Aceh Besar, Indonesia.**
 
 <div style="display: inline_block"><br>
   <img align="center" alt="Aslam-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg">
