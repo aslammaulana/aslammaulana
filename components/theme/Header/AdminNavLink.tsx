@@ -36,6 +36,8 @@ export default function AdminNavLink({ onClick, isMobile = false }: AdminNavLink
         return (
             <Link
                 href={isAdmin ? "/admin" : "/admin/login"}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={onClick}
                 className="flex items-center justify-between gap-6 px-4 py-3 rounded-xl hover:bg-white/5 transition-colors group"
             >
@@ -50,6 +52,8 @@ export default function AdminNavLink({ onClick, isMobile = false }: AdminNavLink
     return (
         <Link
             href={isAdmin ? "/admin" : "/admin/login"}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onClick}
             className="flex items-center justify-between gap-6 px-3 py-3 rounded-xl hover:bg-white/10 transition-colors group"
         >
