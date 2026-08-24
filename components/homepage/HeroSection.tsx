@@ -97,7 +97,7 @@ export default function HeroSection() {
                             <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53] transition-colors duration-200" aria-label="GitHub">
                                 <FaSquareGithub size={28} />
                             </a>
-                            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53]  transition-colors duration-200" aria-label="Instagram">
+                            <a href="https://instagram.com/aslammln" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53]  transition-colors duration-200" aria-label="Instagram">
                                 <FaInstagram size={28} />
                             </a>
                         </div>
