@@ -8,6 +8,7 @@ import type { PortfolioItem } from "@/data/portfolio";
 import { portfolioItems } from "@/data/portfolio";
 import { Lightbox } from "@/components/homepage/portfolio/Lightbox";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Header from "@/components/theme/Header";
 
 export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -27,7 +28,10 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
 
     return (
         <div className="min-h-screen bg-[#0f0e0f]">
-            {/* ── Top Hero Section with Radial Gradient (Without Glassmorphism Header) ── */}
+            {/* ── Glassmorphism Header (Sticky Menu Dropdown & Logo) ── */}
+            <Header />
+
+            {/* ── Top Hero Section with Radial Gradient ── */}
             <section
                 className="relative w-full border-b border-white/8 overflow-hidden"
                 style={{
@@ -44,17 +48,19 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     }}
                 />
 
-                <div className="w-full max-w-[1000px] mx-auto px-4 pt-8 pb-14 flex flex-col">
-                    {/* Back Button (Capsule / Pill Style) */}
-                    <div className="mb-8">
-                        <Link
-                            href="/#work"
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/10 text-white text-sm font-medium hover:bg-white/20 hover:border-white/30 transition-all duration-200 shadow-sm"
-                        >
-                            <ArrowLeft size={16} />
-                            Back
-                        </Link>
-                    </div>
+                {/* Back Button Container — Width 1200px */}
+                <div className="w-full max-w-[1200px] mx-auto px-4 pt-28 sm:pt-32 pb-4">
+                    <Link
+                        href="/#work"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/10 text-white text-sm font-medium hover:bg-white/20 hover:border-white/30 transition-all duration-200 shadow-sm"
+                    >
+                        <ArrowLeft size={16} />
+                        Back
+                    </Link>
+                </div>
+
+                {/* Hero Content — Width 1000px */}
+                <div className="w-full max-w-[1000px] mx-auto px-4 pt-2 pb-14 flex flex-col">
 
                     {/* 1. Kategori (40px) */}
                     <ScrollReveal animation="fade-up" duration={700} delay={0}>
