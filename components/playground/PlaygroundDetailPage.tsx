@@ -68,35 +68,85 @@ export default function PlaygroundDetailPage({
                 </div>
             </div>
 
-            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
+            {/* ── Top Hero Section with Radial Gradient ── */}
+            <section
+                className="relative w-full border-b border-white/8 overflow-hidden"
+                style={{
+                    background: `radial-gradient(circle at 50% 0%, #${accentColor}40 0%, #0f0e0f 75%)`,
+                }}
+            >
+                {/* Subtle top rim light */}
+                <div
+                    className="absolute top-0 left-0 right-0 pointer-events-none"
+                    style={{
+                        height: "1px",
+                        background:
+                            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.9) 90%, transparent 100%)",
+                    }}
+                />
 
-                {/* ── Project Header ── */}
-                <ScrollReveal animation="fade-up" duration={800} delay={0}>
-                    <div className="pt-12 pb-10 border-b border-white/8">
-                        <div className="flex items-center gap-2 mb-3">
-                            <span
-                                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"
-                                style={{
-                                    background: `rgba(${parseInt(accentColor.slice(0, 2) || "63", 16)}, ${parseInt(accentColor.slice(2, 4) || "66", 16)}, ${parseInt(accentColor.slice(4, 6) || "f1", 16)}, 0.15)`,
-                                    color: `#${accentColor}`,
-                                    border: `1px solid #${accentColor}40`,
-                                }}
-                            >
-                                <Sparkles size={11} />
-                                {item.type || "Open Source"}
-                            </span>
-                        </div>
-
-                        <h1 className="text-3xl md:text-[42px] font-bold text-white leading-tight tracking-tight mb-4">
-                            {item.title}
+                <div className="w-full max-w-[1200px] mx-auto px-4 pt-12 pb-14 flex flex-col">
+                    {/* 1. Kategori (40px) */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={0}>
+                        <h1 className="text-3xl sm:text-[40px] font-bold text-white leading-tight tracking-tight">
+                            {item.type || "Playground & Labs"}
                         </h1>
+                    </ScrollReveal>
 
-                        <p className="text-white/60 text-[16px] max-w-[850px] leading-relaxed">
+                    {/* 2. Title (16px) */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={50}>
+                        <p className="text-[16px] text-white/70 font-medium mt-2">
+                            {item.title}
+                        </p>
+                    </ScrollReveal>
+
+                    {/* 3. Image */}
+                    {images[0] && (
+                        <ScrollReveal animation="fade-up" duration={800} delay={100}>
+                            <div
+                                className="relative w-full mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+                                style={{ aspectRatio: "16/9" }}
+                            >
+                                <Image
+                                    src={images[0]}
+                                    alt={item.title}
+                                    fill
+                                    priority
+                                    className="object-cover object-top"
+                                    sizes="(max-width: 1200px) 100vw, 1200px"
+                                />
+                                {/* Accent color glow */}
+                                <div
+                                    className="absolute inset-0 pointer-events-none"
+                                    style={{
+                                        background: `radial-gradient(ellipse at top, #${accentColor}25 0%, transparent 65%)`,
+                                    }}
+                                />
+                            </div>
+                        </ScrollReveal>
+                    )}
+
+                    {/* 4. Deskripsi */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={150}>
+                        <p className="text-[15px] sm:text-[16px] text-white/60 max-w-[850px] leading-relaxed mt-8 whitespace-pre-line">
                             {item.overview ?? item.description}
                         </p>
+                    </ScrollReveal>
 
-                        {/* Action CTA Buttons */}
-                        <div className="flex flex-wrap items-center gap-3 mt-7">
+                    {/* 5. Kunjungi Website / CTA Action Buttons */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={200}>
+                        <div className="flex flex-wrap items-center gap-3 mt-6">
+                            {item.previewUrl && item.previewUrl !== "#" && (
+                                <a
+                                    href={item.previewUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200 shadow-md"
+                                >
+                                    Kunjungi Website
+                                    <ExternalLink size={15} />
+                                </a>
+                            )}
                             {item.githubUrl && item.githubUrl !== "#" && (
                                 <a
                                     href={item.githubUrl}
@@ -108,46 +158,13 @@ export default function PlaygroundDetailPage({
                                     Buka Repository GitHub
                                 </a>
                             )}
-                            {item.previewUrl && item.previewUrl !== "#" && (
-                                <a
-                                    href={item.previewUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200"
-                                >
-                                    Kunjungi Live Demo
-                                    <ExternalLink size={15} />
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                </ScrollReveal>
-
-                {/* ── Main Preview Image ── */}
-                {images[0] && (
-                    <ScrollReveal animation="fade-up" duration={800} delay={100}>
-                        <div
-                            className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
-                            style={{ aspectRatio: "16/9" }}
-                        >
-                            <Image
-                                src={images[0]}
-                                alt={item.title}
-                                fill
-                                priority
-                                className="object-cover object-top"
-                                sizes="(max-width: 1200px) 100vw, 1200px"
-                            />
-                            {/* Accent color glow */}
-                            <div
-                                className="absolute inset-0 pointer-events-none"
-                                style={{
-                                    background: `radial-gradient(ellipse at top, #${accentColor}25 0%, transparent 65%)`,
-                                }}
-                            />
                         </div>
                     </ScrollReveal>
-                )}
+                </div>
+            </section>
+
+            {/* ── Remaining Content Sections ── */}
+            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
 
                 {/* ── Meta Info Grid ── */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">

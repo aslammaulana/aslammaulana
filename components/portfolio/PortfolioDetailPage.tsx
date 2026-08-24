@@ -13,6 +13,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
+    const accentColor = (item.color || "3b82f6").replace("#", "") || "3b82f6";
     const images = (item.images?.length ? item.images : [item.image]).filter(Boolean);
     const currentIndex = portfolioItems.findIndex((p) => p.slug === item.slug);
     const prevItem = currentIndex > 0 ? portfolioItems[currentIndex - 1] : null;
@@ -49,61 +50,92 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                 </div>
             </div>
 
-            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
+            {/* ── Top Hero Section with Radial Gradient ── */}
+            <section
+                className="relative w-full border-b border-white/8 overflow-hidden"
+                style={{
+                    background: `radial-gradient(circle at 50% 0%, #${accentColor}40 0%, #0f0e0f 75%)`,
+                }}
+            >
+                {/* Subtle top rim light */}
+                <div
+                    className="absolute top-0 left-0 right-0 pointer-events-none"
+                    style={{
+                        height: "1px",
+                        background:
+                            "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 90%, transparent 100%)",
+                    }}
+                />
 
-                {/* ── Project Header ── */}
-                <ScrollReveal animation="fade-up" duration={800} delay={0}>
-                    <div className="pt-12 pb-10 border-b border-white/8">
-                        <p className="text-xs font-bold tracking-[0.25em] uppercase text-white/40 mb-3">
+                <div className="w-full max-w-[1200px] mx-auto px-4 pt-12 pb-14 flex flex-col">
+                    {/* 1. Kategori (40px) */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={0}>
+                        <h1 className="text-3xl sm:text-[40px] font-bold text-white leading-tight tracking-tight">
                             {item.category}
-                        </p>
-                        <h1 className="text-3xl md:text-[40px] font-bold text-white leading-tight tracking-tight mb-4">
-                            {item.title}
                         </h1>
-                        <p className="text-white/50 text-[16px] max-w-[800px] leading-relaxed">
+                    </ScrollReveal>
+
+                    {/* 2. Title (16px) */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={50}>
+                        <p className="text-[16px] text-white/70 font-medium mt-2">
+                            {item.title}
+                        </p>
+                    </ScrollReveal>
+
+                    {/* 3. Image */}
+                    {images[0] && (
+                        <ScrollReveal animation="fade-up" duration={800} delay={100}>
+                            <div
+                                className="relative w-full mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+                                style={{ aspectRatio: "16/10" }}
+                            >
+                                <Image
+                                    src={images[0]}
+                                    alt={item.title}
+                                    fill
+                                    priority
+                                    className="object-cover object-top"
+                                    sizes="(max-width: 1200px) 100vw, 1200px"
+                                />
+                                {/* Subtle color overlay from accentColor */}
+                                <div
+                                    className="absolute inset-0 pointer-events-none"
+                                    style={{
+                                        background: `radial-gradient(ellipse at top, #${accentColor}20 0%, transparent 60%)`,
+                                    }}
+                                />
+                            </div>
+                        </ScrollReveal>
+                    )}
+
+                    {/* 4. Deskripsi */}
+                    <ScrollReveal animation="fade-up" duration={700} delay={150}>
+                        <p className="text-[15px] sm:text-[16px] text-white/60 max-w-[850px] leading-relaxed mt-8">
                             {item.overview ?? item.description}
                         </p>
-                        {item.previewUrl && item.previewUrl !== "#" && (
+                    </ScrollReveal>
+
+                    {/* 5. Kunjungi Website */}
+                    {item.previewUrl && item.previewUrl !== "#" && (
+                        <ScrollReveal animation="fade-up" duration={700} delay={200}>
                             <div className="mt-6">
                                 <a
                                     href={item.previewUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#0f0f0e] text-sm font-semibold hover:bg-white/90 transition-all duration-200 shadow-md"
                                 >
                                     Kunjungi Website
                                     <ExternalLink size={14} />
                                 </a>
                             </div>
-                        )}
-                    </div>
-                </ScrollReveal>
+                        </ScrollReveal>
+                    )}
+                </div>
+            </section>
 
-                {/* ── Hero Image ── */}
-                {images[0] && (
-                    <ScrollReveal animation="fade-up" duration={800} delay={100}>
-                        <div
-                            className="relative w-full mt-10 rounded-2xl overflow-hidden border border-white/10"
-                            style={{ aspectRatio: "16/10" }}
-                        >
-                            <Image
-                                src={images[0]}
-                                alt={item.title}
-                                fill
-                                priority
-                                className="object-cover object-top"
-                                sizes="(max-width: 1200px) 100vw, 1200px"
-                            />
-                            {/* Subtle color overlay from item.color */}
-                            <div
-                                className="absolute inset-0 pointer-events-none"
-                                style={{
-                                    background: `radial-gradient(ellipse at top, #${item.color}22 0%, transparent 60%)`,
-                                }}
-                            />
-                        </div>
-                    </ScrollReveal>
-                )}
+            {/* ── Remaining Content Sections ── */}
+            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
 
                 {/* ── Meta Grid: [KLIEN, PERAN] and [TAHUN, STATUS] ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10">
@@ -174,7 +206,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                                     >
                                         <span
                                             className="mt-[5px] w-1.5 h-1.5 rounded-full shrink-0"
-                                            style={{ background: `#${item.color}` }}
+                                            style={{ background: `#${accentColor}` }}
                                         />
                                         <span className="text-white/70 text-sm leading-relaxed">{feat}</span>
                                     </div>
@@ -194,7 +226,9 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                                     <span
                                         key={i}
                                         className="px-4 py-2 rounded-full text-sm font-medium border border-white/10 text-white/70"
-                                        style={{ background: `rgba(${parseInt(item.color.slice(0, 2), 16)}, ${parseInt(item.color.slice(2, 4), 16)}, ${parseInt(item.color.slice(4, 6), 16)}, 0.15)` }}
+                                        style={{
+                                            background: `rgba(${parseInt(accentColor.slice(0, 2) || "3b", 16)}, ${parseInt(accentColor.slice(2, 4) || "82", 16)}, ${parseInt(accentColor.slice(4, 6) || "f6", 16)}, 0.15)`,
+                                        }}
                                     >
                                         {tag}
                                     </span>
