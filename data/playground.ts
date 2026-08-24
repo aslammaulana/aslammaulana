@@ -8,6 +8,7 @@ export type PlaygroundItem = {
     githubUrl?: string;
     previewUrl?: string;
     image: string;
+    detailImage?: string;
     images: string[];
     tags: string[];
     features?: string[];
@@ -28,6 +29,7 @@ export type DbPlaygroundRow = {
     github_url: string | null;
     preview_url: string | null;
     image: string;
+    detail_image?: string | null;
     images: string[] | null;
     tags: string[] | null;
     features: string[] | null;
@@ -49,6 +51,7 @@ export function mapPlaygroundRow(row: DbPlaygroundRow): PlaygroundItem {
         githubUrl: row.github_url ?? undefined,
         previewUrl: row.preview_url ?? undefined,
         image: row.image || "",
+        detailImage: row.detail_image ?? undefined,
         images: row.images ?? [],
         tags: row.tags ?? [],
         features: row.features ?? [],

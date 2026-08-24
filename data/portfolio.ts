@@ -1,4 +1,4 @@
-﻿export type PortfolioItem = {
+export type PortfolioItem = {
     id?: string;           // uuid from Supabase
     slug: string;
     category: string;
@@ -7,6 +7,7 @@
     tags: string[];
     previewUrl: string;
     image: string;
+    detailImage?: string;
     images: string[];
     publishedAt?: string;
     features?: string[];
@@ -39,6 +40,7 @@ export type DbPortfolioRow = {
     image_position: "left" | "right";
     preview_url: string;
     image: string;
+    detail_image?: string | null;
     images: string[] | null;
     tags: string[] | null;
     features: string[] | null;
@@ -64,6 +66,7 @@ export function mapPortfolioRow(row: DbPortfolioRow): PortfolioItem {
         imagePosition: row.image_position,
         previewUrl: row.preview_url,
         image: row.image,
+        detailImage: row.detail_image ?? undefined,
         images: row.images ?? [],
         tags: row.tags ?? [],
         features: row.features ?? [],

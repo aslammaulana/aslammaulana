@@ -22,6 +22,7 @@ export type PortfolioFormData = {
     previewUrl: string;
     order: number;
     image: string;
+    detailImage: string;
     images: string[];
     tags: string[];
     features: string[];
@@ -88,6 +89,7 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
         previewUrl: defaultValues?.previewUrl ?? "",
         order: defaultValues?.order ?? 0,
         image: defaultValues?.image ?? "",
+        detailImage: defaultValues?.detailImage ?? "",
         images: defaultValues?.images ?? [],
         tags: defaultValues?.tags ?? [],
         features: defaultValues?.features ?? [],
@@ -96,6 +98,7 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
     const [tagInput, setTagInput] = useState("");
     const [featureInput, setFeatureInput] = useState("");
     const [uploadingMain, setUploadingMain] = useState(false);
+    const [uploadingDetail, setUploadingDetail] = useState(false);
     const [uploadingGallery, setUploadingGallery] = useState(false);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -127,6 +130,28 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
             setError(err instanceof Error ? err.message : "Terjadi kesalahan saat mengunggah gambar.");
         } finally {
             setUploadingMain(false);
+            e.target.value = "";
+        }
+    };
+
+    const handleDetailImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        setUploadingDetail(true);
+        setError(null);
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            const res = await uploadPortfolioImage(formData);
+            if (res.success && res.url) {
+                set("detailImage", res.url);
+            } else {
+                setError(res.error || "Gagal mengunggah gambar detail.");
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Terjadi kesalahan saat mengunggah gambar detail.");
+        } finally {
+            setUploadingDetail(false);
             e.target.value = "";
         }
     };
@@ -348,12 +373,15 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
                 </Field>
             </div>
 
-            {/* ── GAMBAR UTAMA ── */}
-            <SectionTitle>Gambar Utama</SectionTitle>
+            {/* ── GAMBAR UTAMA (HOMEPAGE CARD) ── */}
+            <SectionTitle>Gambar Utama (Card Thumbnail Homepage)</SectionTitle>
+            <p className="text-white/40 text-xs -mt-2">
+                Gambar thumbnail yang tampil pada kartu portfolio di halaman depan (#work).
+            </p>
             <div className="flex flex-col gap-3">
                 {form.image && (
                     <div className="relative w-full max-w-sm aspect-video rounded-xl overflow-hidden border border-white/10">
-                        <Image src={form.image} alt="Main image" fill unoptimized className="object-cover" />
+                        <Image src={form.image} alt="Main card thumbnail" fill unoptimized className="object-cover" />
                         <button
                             type="button"
                             onClick={() => set("image", "")}
@@ -369,7 +397,7 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
                     ) : (
                         <UploadCloud size={16} />
                     )}
-                    {form.image ? "Ganti Gambar" : "Upload Gambar Utama"}
+                    {form.image ? "Ganti Gambar Utama" : "Upload Gambar Utama"}
                     <input
                         type="file"
                         accept="image/*"
@@ -383,6 +411,48 @@ export default function PortfolioForm({ defaultValues, onSubmit, submitLabel = "
                     className={inputClass}
                     value={form.image}
                     onChange={(e) => set("image", e.target.value)}
+                    placeholder="https://... atau path /assets/..."
+                />
+            </div>
+
+            {/* ── GAMBAR DETAIL (HERO /[SLUG]) ── */}
+            <SectionTitle>Gambar Detail (Hero Banner /[slug])</SectionTitle>
+            <p className="text-white/40 text-xs -mt-2">
+                Gambar resolusi tinggi / showcase banner yang tampil sebagai hero banner di halaman detail (/portfolio/[slug]). Jika dikosongkan, otomatis menggunakan Gambar Utama.
+            </p>
+            <div className="flex flex-col gap-3">
+                {form.detailImage && (
+                    <div className="relative w-full max-w-sm aspect-video rounded-xl overflow-hidden border border-white/10">
+                        <Image src={form.detailImage} alt="Detail hero banner" fill unoptimized className="object-cover" />
+                        <button
+                            type="button"
+                            onClick={() => set("detailImage", "")}
+                            className="absolute top-2 right-2 p-1 rounded-full bg-black/60 text-white/80 hover:text-white"
+                        >
+                            <X size={14} />
+                        </button>
+                    </div>
+                )}
+                <label className="flex items-center gap-2 w-fit px-4 py-2.5 rounded-lg border border-white/15 bg-white/5 text-white/60 text-sm cursor-pointer hover:bg-white/10 hover:text-white transition-all duration-200">
+                    {uploadingDetail ? (
+                        <Loader2 size={16} className="animate-spin" />
+                    ) : (
+                        <UploadCloud size={16} />
+                    )}
+                    {form.detailImage ? "Ganti Gambar Detail" : "Upload Gambar Detail"}
+                    <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleDetailImageUpload}
+                        disabled={uploadingDetail}
+                    />
+                </label>
+                <p className="text-white/30 text-xs">Atau isi URL langsung:</p>
+                <input
+                    className={inputClass}
+                    value={form.detailImage}
+                    onChange={(e) => set("detailImage", e.target.value)}
                     placeholder="https://... atau path /assets/..."
                 />
             </div>

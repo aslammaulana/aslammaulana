@@ -22,6 +22,7 @@ function toDbRow(data: PortfolioFormData) {
         image_position: data.imagePosition,
         preview_url: data.previewUrl.trim(),
         image: data.image.trim(),
+        detail_image: (data.detailImage ?? "").trim(),
         images: data.images,
         tags: data.tags,
         features: data.features,

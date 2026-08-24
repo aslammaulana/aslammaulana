@@ -16,6 +16,7 @@ function toDbRow(data: PlaygroundFormData) {
         preview_url: data.previewUrl.trim() || null,
         color: data.color.replace("#", "").trim() || "6366f1",
         image: data.image.trim(),
+        detail_image: (data.detailImage ?? "").trim(),
         images: data.images ?? [],
         tags: data.tags ?? [],
         features: data.features ?? [],

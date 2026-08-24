@@ -21,7 +21,8 @@ export default function PlaygroundDetailPage({
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
     const accentColor = (item.color || "6366f1").replace("#", "") || "6366f1";
-    const images = (item.images?.length ? item.images : [item.image]).filter(Boolean);
+    const heroImage = item.detailImage || item.image;
+    const images = (item.images?.length ? item.images : [heroImage]).filter(Boolean);
 
     const openLightbox = (idx: number) => {
         setLightboxIndex(idx);
@@ -74,14 +75,14 @@ export default function PlaygroundDetailPage({
                     </ScrollReveal>
 
                     {/* 3. Image */}
-                    {images[0] && (
+                    {heroImage && (
                         <ScrollReveal animation="fade-up" duration={800} delay={100}>
                             <div
                                 className="relative w-full mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
                                 style={{ aspectRatio: "16/9" }}
                             >
                                 <Image
-                                    src={images[0]}
+                                    src={heroImage}
                                     alt={item.title}
                                     fill
                                     priority

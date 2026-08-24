@@ -31,6 +31,7 @@ export default async function EditPlaygroundPage({ params }: Props) {
         color: item.color,
         order: item.order ?? 0,
         image: item.image,
+        detailImage: item.detailImage ?? "",
         images: item.images ?? [],
         tags: item.tags ?? [],
         features: item.features ?? [],

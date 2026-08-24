@@ -37,6 +37,7 @@ export default async function EditPortfolioPage({ params }: Props) {
         previewUrl: item.previewUrl,
         order: item.order ?? 0,
         image: item.image,
+        detailImage: item.detailImage ?? "",
         images: item.images ?? [],
         tags: item.tags ?? [],
         features: item.features ?? [],

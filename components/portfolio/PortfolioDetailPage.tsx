@@ -14,7 +14,8 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
     const [lightboxIndex, setLightboxIndex] = useState(0);
 
     const accentColor = (item.color || "3b82f6").replace("#", "") || "3b82f6";
-    const images = (item.images?.length ? item.images : [item.image]).filter(Boolean);
+    const heroImage = item.detailImage || item.image;
+    const images = (item.images?.length ? item.images : [heroImage]).filter(Boolean);
     const currentIndex = portfolioItems.findIndex((p) => p.slug === item.slug);
     const prevItem = currentIndex > 0 ? portfolioItems[currentIndex - 1] : null;
     const nextItem = currentIndex < portfolioItems.length - 1 ? portfolioItems[currentIndex + 1] : null;
@@ -70,14 +71,14 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     </ScrollReveal>
 
                     {/* 3. Image */}
-                    {images[0] && (
+                    {heroImage && (
                         <ScrollReveal animation="fade-up" duration={800} delay={100}>
                             <div
                                 className="relative w-full mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
                                 style={{ aspectRatio: "16/10" }}
                             >
                                 <Image
-                                    src={images[0]}
+                                    src={heroImage}
                                     alt={item.title}
                                     fill
                                     priority

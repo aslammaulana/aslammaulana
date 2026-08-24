@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS public.playground_items (
     github_url TEXT,
     preview_url TEXT,
     image TEXT NOT NULL DEFAULT '',
+    detail_image TEXT NOT NULL DEFAULT '',
     images TEXT[] DEFAULT ARRAY[]::TEXT[],
     tags TEXT[] DEFAULT ARRAY[]::TEXT[],
     features TEXT[] DEFAULT ARRAY[]::TEXT[],
