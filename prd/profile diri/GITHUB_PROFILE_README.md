@@ -1,6 +1,6 @@
 <div align="center">
 
-  # Hi there, I'm Aslam 👋
+  # Hi there, I'm Maulana Aslam 👋
   
   <p align="center">
     <strong>Web Developer &nbsp;|&nbsp; AI Automation Engineer</strong>
