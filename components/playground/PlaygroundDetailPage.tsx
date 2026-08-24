@@ -48,7 +48,7 @@ export default function PlaygroundDetailPage({
                     }}
                 />
 
-                <div className="w-full max-w-[1200px] mx-auto px-4 pt-8 pb-14 flex flex-col">
+                <div className="w-full max-w-[1000px] mx-auto px-4 pt-8 pb-14 flex flex-col">
                     {/* Back Button (Capsule / Pill Style) */}
                     <div className="mb-8">
                         <Link
@@ -87,7 +87,7 @@ export default function PlaygroundDetailPage({
                                     fill
                                     priority
                                     className="object-cover object-top"
-                                    sizes="(max-width: 1200px) 100vw, 1200px"
+                                    sizes="(max-width: 1000px) 100vw, 1000px"
                                 />
                                 {/* Accent color glow */}
                                 <div
@@ -138,7 +138,7 @@ export default function PlaygroundDetailPage({
             </section>
 
             {/* ── Remaining Content Sections ── */}
-            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
+            <div className="w-full max-w-[1000px] mx-auto px-4 pb-20">
 
                 {/* ── Meta Info Grid ── */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">

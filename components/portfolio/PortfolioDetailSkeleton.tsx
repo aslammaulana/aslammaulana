@@ -3,7 +3,7 @@ export default function PortfolioDetailSkeleton() {
         <div className="min-h-screen bg-[#0f0e0f] text-white">
             {/* ── Top Nav Bar Skeleton ── */}
             <div className="w-full border-b border-white/8 bg-[#0f0e0f]/80 backdrop-blur-md sticky top-0 z-50">
-                <div className="w-full max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
+                <div className="w-full max-w-[1000px] mx-auto px-4 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="w-4 h-4 rounded bg-white/10 animate-pulse" />
                         <div className="w-36 h-4 rounded bg-white/10 animate-pulse" />
@@ -12,7 +12,7 @@ export default function PortfolioDetailSkeleton() {
                 </div>
             </div>
 
-            <div className="w-full max-w-[1200px] mx-auto px-4 pb-20">
+            <div className="w-full max-w-[1000px] mx-auto px-4 pb-20">
                 {/* ── Project Header Skeleton ── */}
                 <div className="pt-12 pb-10 border-b border-white/8">
                     {/* Category kicker */}
