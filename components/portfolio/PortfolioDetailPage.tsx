@@ -74,7 +74,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     {heroImage && (
                         <ScrollReveal animation="fade-up" duration={800} delay={100}>
                             <div
-                                className="relative w-full mt-8  overflow-hidden  "
+                                className="relative w-full mt-8 overflow-hidden"
                                 style={{ aspectRatio: "16/10" }}
                             >
                                 <Image
@@ -84,13 +84,6 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                                     priority
                                     className="object-cover object-top"
                                     sizes="(max-width: 1200px) 100vw, 1200px"
-                                />
-                                {/* Subtle color overlay from accentColor */}
-                                <div
-                                    className="absolute inset-0 pointer-events-none"
-                                    style={{
-                                        background: `radial-gradient(ellipse at top, #${accentColor}20 0%, transparent 60%)`,
-                                    }}
                                 />
                             </div>
                         </ScrollReveal>
