@@ -74,7 +74,7 @@ export default function PortfolioDetailPage({ item }: { item: PortfolioItem }) {
                     {heroImage && (
                         <ScrollReveal animation="fade-up" duration={800} delay={100}>
                             <div
-                                className="relative w-full mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+                                className="relative w-full mt-8  overflow-hidden  "
                                 style={{ aspectRatio: "16/10" }}
                             >
                                 <Image
