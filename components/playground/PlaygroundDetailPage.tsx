@@ -30,45 +30,7 @@ export default function PlaygroundDetailPage({
 
     return (
         <div className="min-h-screen bg-[#0f0e0f]">
-            {/* ── Top Nav Bar ── */}
-            <div className="w-full border-b border-white/8 bg-[#0f0e0f]/80 backdrop-blur-md sticky top-0 z-50">
-                <div className="w-full max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
-                    <Link
-                        href="/#playground"
-                        className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200"
-                    >
-                        <ArrowLeft size={16} />
-                        Kembali ke Playground
-                    </Link>
-
-                    <div className="flex items-center gap-2">
-                        {item.githubUrl && item.githubUrl !== "#" && (
-                            <a
-                                href={item.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-white/15 bg-white/5 text-white/80 text-xs font-medium hover:border-white/30 hover:text-white hover:bg-white/10 transition-all duration-200"
-                            >
-                                <Github size={14} />
-                                <span className="hidden sm:inline">GitHub Repo</span>
-                            </a>
-                        )}
-                        {item.previewUrl && item.previewUrl !== "#" && (
-                            <a
-                                href={item.previewUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white text-[#0f0f0e] text-xs font-semibold hover:bg-white/90 transition-all duration-200"
-                            >
-                                <span>Live Demo</span>
-                                <ExternalLink size={13} />
-                            </a>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            {/* ── Top Hero Section with Radial Gradient ── */}
+            {/* ── Top Hero Section with Radial Gradient (Without Glassmorphism Header) ── */}
             <section
                 className="relative w-full border-b border-white/8 overflow-hidden"
                 style={{
@@ -85,7 +47,18 @@ export default function PlaygroundDetailPage({
                     }}
                 />
 
-                <div className="w-full max-w-[1200px] mx-auto px-4 pt-12 pb-14 flex flex-col">
+                <div className="w-full max-w-[1200px] mx-auto px-4 pt-8 pb-14 flex flex-col">
+                    {/* Back Button (Capsule / Pill Style) */}
+                    <div className="mb-8">
+                        <Link
+                            href="/#playground"
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/10 text-white text-sm font-medium hover:bg-white/20 hover:border-white/30 transition-all duration-200 shadow-sm"
+                        >
+                            <ArrowLeft size={16} />
+                            Back
+                        </Link>
+                    </div>
+
                     {/* 1. Kategori (40px) */}
                     <ScrollReveal animation="fade-up" duration={700} delay={0}>
                         <h1 className="text-3xl sm:text-[40px] font-bold text-white leading-tight tracking-tight">
