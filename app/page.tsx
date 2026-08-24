@@ -4,6 +4,7 @@ import Footer from "@/components/theme/Footer";
 import AboutSection from "@/components/homepage/AboutSection";
 import Divider from "@/components/homepage/Divider";
 import PortfolioSection from "@/components/homepage/PortfolioSection";
+import PlaygroundSection from "@/components/homepage/PlaygroundSection";
 import ExperienceSection from "@/components/homepage/experience";
 import SkillsSection from "@/components/homepage/SkillsSection";
 
@@ -20,6 +21,7 @@ export default function Home() {
       <SkillsSection />
        {/* <AboutSection /> */}
       <PortfolioSection />
+      <PlaygroundSection />
       
       <ExperienceSection />
       <Footer />

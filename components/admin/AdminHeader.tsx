@@ -18,11 +18,17 @@ export default function AdminHeader({ email }: { email: string }) {
     };
 
     const breadcrumb = () => {
-        if (pathname === "/admin") return "Dashboard";
+        if (pathname === "/admin") return "Portfolio CMS";
         if (pathname === "/admin/portfolio/new") return "Tambah Portfolio";
-        if (pathname.includes("/edit")) return "Edit Portfolio";
-        return "Admin";
+        if (pathname.startsWith("/admin/portfolio/") && pathname.includes("/edit")) return "Edit Portfolio";
+        if (pathname === "/admin/playground") return "Playground CMS";
+        if (pathname === "/admin/playground/new") return "Tambah Playground";
+        if (pathname.startsWith("/admin/playground/") && pathname.includes("/edit")) return "Edit Playground";
+        return "Dashboard";
     };
+
+    const isPortfolioActive = pathname === "/admin" || pathname.startsWith("/admin/portfolio");
+    const isPlaygroundActive = pathname.startsWith("/admin/playground");
 
     return (
         <header
@@ -30,7 +36,7 @@ export default function AdminHeader({ email }: { email: string }) {
             style={{ background: "rgba(15,14,15,0.92)", backdropFilter: "blur(12px)" }}
         >
             <div className="w-full max-w-[1200px] mx-auto px-4 h-14 flex items-center justify-between gap-4">
-                {/* Left: Homepage Button + Admin logo + breadcrumb */}
+                {/* Left: Homepage Button + Admin logo + Tabs + breadcrumb */}
                 <div className="flex items-center gap-3">
                     <Link
                         href="/"
@@ -38,23 +44,40 @@ export default function AdminHeader({ email }: { email: string }) {
                         title="Kembali ke Homepage"
                     >
                         <Home size={13} className="text-white/50 group-hover:text-white transition-colors" />
-                        <span>Homepage</span>
+                        <span className="hidden sm:inline">Homepage</span>
                     </Link>
 
                     <div className="h-4 w-px bg-white/10" />
 
-                    <Link
-                        href="/admin"
-                        className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-                    >
-                        <LayoutDashboard size={17} />
-                        <span className="text-sm font-semibold">Admin</span>
-                    </Link>
-                    {pathname !== "/admin" && (
-                        <>
+                    {/* Nav Switcher Tabs */}
+                    <div className="flex items-center gap-1 bg-white/5 p-0.5 rounded-lg border border-white/8">
+                        <Link
+                            href="/admin"
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
+                                isPortfolioActive
+                                    ? "bg-white/15 text-white shadow-sm"
+                                    : "text-white/50 hover:text-white/80"
+                            }`}
+                        >
+                            Portfolio
+                        </Link>
+                        <Link
+                            href="/admin/playground"
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
+                                isPlaygroundActive
+                                    ? "bg-white/15 text-white shadow-sm"
+                                    : "text-white/50 hover:text-white/80"
+                            }`}
+                        >
+                            Playground
+                        </Link>
+                    </div>
+
+                    {pathname !== "/admin" && pathname !== "/admin/playground" && (
+                        <div className="hidden md:flex items-center gap-2">
                             <span className="text-white/20">/</span>
-                            <span className="text-sm text-white/50">{breadcrumb()}</span>
-                        </>
+                            <span className="text-xs text-white/50">{breadcrumb()}</span>
+                        </div>
                     )}
                 </div>
 
