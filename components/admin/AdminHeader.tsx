@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { LayoutDashboard, LogOut, Home } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
@@ -30,13 +30,24 @@ export default function AdminHeader({ email }: { email: string }) {
             style={{ background: "rgba(15,14,15,0.92)", backdropFilter: "blur(12px)" }}
         >
             <div className="w-full max-w-[1200px] mx-auto px-4 h-14 flex items-center justify-between gap-4">
-                {/* Left: logo + breadcrumb */}
+                {/* Left: Homepage Button + Admin logo + breadcrumb */}
                 <div className="flex items-center gap-3">
                     <Link
-                        href="/admin"
-                        className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                        href="/"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-white/70 text-xs font-medium hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-200 group"
+                        title="Kembali ke Homepage"
                     >
-                        <LayoutDashboard size={18} />
+                        <Home size={13} className="text-white/50 group-hover:text-white transition-colors" />
+                        <span>Homepage</span>
+                    </Link>
+
+                    <div className="h-4 w-px bg-white/10" />
+
+                    <Link
+                        href="/admin"
+                        className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                    >
+                        <LayoutDashboard size={17} />
                         <span className="text-sm font-semibold">Admin</span>
                     </Link>
                     {pathname !== "/admin" && (
