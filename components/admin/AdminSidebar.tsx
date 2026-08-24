@@ -6,22 +6,18 @@ import { usePathname, useRouter } from "next/navigation";
 import {
     Briefcase,
     Sparkles,
-    PlusCircle,
     Home,
     LogOut,
-    User,
     X,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 interface AdminSidebarProps {
-    email: string;
     mobileOpen?: boolean;
     onMobileClose?: () => void;
 }
 
 export default function AdminSidebar({
-    email,
     mobileOpen = false,
     onMobileClose,
 }: AdminSidebarProps) {
@@ -40,29 +36,13 @@ export default function AdminSidebar({
         router.refresh();
     };
 
-    const isPortfolioActive =
-        pathname === "/admin" ||
-        (pathname.startsWith("/admin/portfolio") && pathname !== "/admin/portfolio/new");
-    const isNewPortfolioActive = pathname === "/admin/portfolio/new";
-
-    const isPlaygroundActive =
-        pathname === "/admin/playground" ||
-        (pathname.startsWith("/admin/playground") && pathname !== "/admin/playground/new");
-    const isNewPlaygroundActive = pathname === "/admin/playground/new";
+    const isPortfolioActive = pathname === "/admin" || pathname.startsWith("/admin/portfolio");
+    const isPlaygroundActive = pathname.startsWith("/admin/playground");
 
     const renderNavContent = (isMobile: boolean) => (
         <div className="flex flex-col flex-1 justify-between py-4">
-            {/* Top Navigation Links */}
-            <div className="flex flex-col gap-1 px-2">
-                {/* Section: Portfolio */}
-                <div
-                    className={`px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/30 whitespace-nowrap transition-opacity duration-300 ${
-                        isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                >
-                    Portfolio
-                </div>
-
+            {/* Main Navigation Links */}
+            <div className="flex flex-col gap-1.5 px-2">
                 <Link
                     href="/admin"
                     onClick={isMobile ? onMobileClose : undefined}
@@ -88,39 +68,6 @@ export default function AdminSidebar({
                 </Link>
 
                 <Link
-                    href="/admin/portfolio/new"
-                    onClick={isMobile ? onMobileClose : undefined}
-                    className={`flex h-10 w-full items-center rounded-xl px-3 transition-colors ${
-                        isNewPortfolioActive
-                            ? "bg-white/15 text-white font-medium border border-white/10 shadow-sm"
-                            : "text-zinc-400 hover:bg-white/10 hover:text-white"
-                    }`}
-                    title="Tambah Portfolio"
-                >
-                    <div className="relative shrink-0 flex items-center justify-center">
-                        <PlusCircle size={18} />
-                    </div>
-                    <span
-                        className={`ml-3 overflow-hidden text-sm font-medium whitespace-nowrap ${
-                            isMobile
-                                ? "opacity-100"
-                                : "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        }`}
-                    >
-                        Tambah Portfolio
-                    </span>
-                </Link>
-
-                {/* Section: Playground */}
-                <div
-                    className={`mt-4 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/30 whitespace-nowrap transition-opacity duration-300 ${
-                        isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                    }`}
-                >
-                    Playground
-                </div>
-
-                <Link
                     href="/admin/playground"
                     onClick={isMobile ? onMobileClose : undefined}
                     className={`flex h-10 w-full items-center rounded-xl px-3 transition-colors ${
@@ -143,34 +90,10 @@ export default function AdminSidebar({
                         Playground CMS
                     </span>
                 </Link>
-
-                <Link
-                    href="/admin/playground/new"
-                    onClick={isMobile ? onMobileClose : undefined}
-                    className={`flex h-10 w-full items-center rounded-xl px-3 transition-colors ${
-                        isNewPlaygroundActive
-                            ? "bg-white/15 text-white font-medium border border-white/10 shadow-sm"
-                            : "text-zinc-400 hover:bg-white/10 hover:text-white"
-                    }`}
-                    title="Tambah Playground"
-                >
-                    <div className="relative shrink-0 flex items-center justify-center">
-                        <PlusCircle size={18} />
-                    </div>
-                    <span
-                        className={`ml-3 overflow-hidden text-sm font-medium whitespace-nowrap ${
-                            isMobile
-                                ? "opacity-100"
-                                : "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        }`}
-                    >
-                        Tambah Playground
-                    </span>
-                </Link>
             </div>
 
-            {/* Bottom Section: Homepage, User Info, Logout */}
-            <div className="mt-auto px-2 flex flex-col gap-1 pt-4 border-t border-white/10">
+            {/* Bottom Section: Homepage, Logout */}
+            <div className="mt-auto px-2 flex flex-col gap-1.5 pt-4 border-t border-white/10">
                 {/* Back to Homepage */}
                 <Link
                     href="/"
@@ -191,25 +114,6 @@ export default function AdminSidebar({
                         Kembali ke Web
                     </span>
                 </Link>
-
-                {/* User Email */}
-                <div
-                    className="flex h-10 w-full items-center rounded-xl px-3 text-zinc-400 select-none"
-                    title={email}
-                >
-                    <div className="relative shrink-0 flex items-center justify-center">
-                        <User size={18} className="text-white/40" />
-                    </div>
-                    <span
-                        className={`ml-3 overflow-hidden text-xs text-white/50 truncate whitespace-nowrap ${
-                            isMobile
-                                ? "opacity-100"
-                                : "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        }`}
-                    >
-                        {email || "Admin"}
-                    </span>
-                </div>
 
                 {/* Logout Button */}
                 <button
@@ -237,11 +141,11 @@ export default function AdminSidebar({
     return (
         <>
             {/* ── DESKTOP SIDEBAR — HOVER TO EXPAND ── */}
-            <aside className="group hidden md:flex fixed left-0 top-0 z-40 h-screen w-[64px] flex-col border-r border-white/10 bg-[#0f0e0f]/95 backdrop-blur-xl transition-all duration-300 ease-in-out hover:w-[240px] overflow-y-auto overflow-x-hidden">
+            <aside className="group hidden md:flex fixed left-0 top-0 z-40 h-screen w-[64px] flex-col border-r border-white/10 bg-[#0f0e0f]/95 backdrop-blur-xl transition-all duration-300 ease-in-out hover:w-[240px] overflow-y-auto overflow-x-hidden select-none">
                 {/* Desktop Header / Logo */}
                 <Link
                     href="/admin"
-                    className="flex h-16 items-center gap-3 px-3.5 border-b border-white/10 shrink-0"
+                    className="flex h-14 items-center gap-3 px-3.5 border-b border-white/10 shrink-0"
                 >
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-black font-bold text-sm shadow-md">
                         AM
@@ -261,12 +165,12 @@ export default function AdminSidebar({
 
             {/* ── MOBILE SIDEBAR — SLIDE IN DRAWER ── */}
             <aside
-                className={`fixed left-0 top-0 z-50 h-screen w-[80%] max-w-[300px] flex flex-col border-r border-white/10 bg-[#0f0e0f] overflow-y-auto overflow-x-hidden transition-transform duration-300 ease-in-out md:hidden ${
+                className={`fixed left-0 top-0 z-50 h-screen w-[80%] max-w-[300px] flex flex-col border-r border-white/10 bg-[#0f0e0f] overflow-y-auto overflow-x-hidden transition-transform duration-300 ease-in-out md:hidden select-none ${
                     mobileOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
                 {/* Mobile Header in Drawer */}
-                <div className="flex h-16 items-center justify-between px-4 border-b border-white/10 shrink-0">
+                <div className="flex h-14 items-center justify-between px-4 border-b border-white/10 shrink-0">
                     <Link
                         href="/admin"
                         onClick={onMobileClose}

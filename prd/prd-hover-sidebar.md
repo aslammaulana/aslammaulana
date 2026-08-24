@@ -47,42 +47,27 @@ Halaman `/admin/login` dan seluruh halaman publik website (Homepage `/`, `/about
 
 ## 3. Spesifikasi Fungsional & Menu Navigasi Admin
 
-### 3.1 Daftar Menu Sidebar Admin
+### 3.1 Struktur Navigasi Admin Baru
 
-```ts
-// Menu Utama (Top Section)
-export const adminNavItems = [
-  {
-    label: "Portfolio CMS",
-    href: "/admin",
-    icon: FolderGit2, // atau Briefcase
-    exact: true,
-  },
-  {
-    label: "Tambah Portfolio",
-    href: "/admin/portfolio/new",
-    icon: PlusCircle,
-    exact: true,
-  },
-  {
-    label: "Playground CMS",
-    href: "/admin/playground",
-    icon: Sparkles, // atau FlaskConical
-    exact: true,
-  },
-  {
-    label: "Tambah Playground",
-    href: "/admin/playground/new",
-    icon: PlusCircle,
-    exact: true,
-  },
-];
-```
+#### 1. Sidebar Navigasi (Icon-Only Collapsed `64px` → Expand `240px`):
+- 📁 **Portfolio CMS** (`/admin`)
+- ✨ **Playground CMS** (`/admin/playground`)
+- 🏠 **Kembali ke Web** (`/`)
+- 🚪 **Tombol Logout** (Supabase Auth sign out → redirect ke `/admin/login`)
 
-#### Menu Bawah (Bottom Section / Utilities):
-1. **Kembali ke Homepage** (`/`) dengan ikon `Home` / `ArrowUpRight`.
-2. **User Info (Email):** Menampilkan avatar/ikon `User` dan alamat email admin yang sedang login (hanya tampil penuh saat sidebar expanded).
-3. **Tombol Logout:** Ikon `LogOut` yang memicu `supabase.auth.signOut()` dan redirect ke `/admin/login`.
+*(Menu Tambah Portfolio / Tambah Playground disederhanakan melalui tombol aksi di halaman CMS, dan tampilan email dipindahkan ke Top Navbar).*
+
+---
+
+### 3.2 Top Navbar / Header (Breadcrumb & Admin Email)
+Sesuai dengan desain visual yang diminta:
+- **Kiri (Breadcrumbs Trail):**
+  - Menampilkan jalur halaman dengan separator `>` / Chevron, teks parent bernuansa redup (`text-white/50`), dan nama halaman aktif dengan teks tebal (`font-semibold text-white`).
+  - Contoh: `Admin > Portfolio CMS` atau `Admin > Portfolio CMS > Tambah Portfolio`.
+  - Dilengkapi tombol Hamburger Menu untuk membuka sidebar pada layar smartphone/tablet (`md:hidden`).
+- **Kanan (Email Admin):**
+  - Menampilkan email admin yang sedang login di sisi kanan atas header.
+
 
 ---
 

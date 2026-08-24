@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import AdminSidebar from "./AdminSidebar";
-import AdminMobileHeader from "./AdminMobileHeader";
+import AdminTopNavbar from "./AdminTopNavbar";
 
 interface AdminShellProps {
     email: string;
@@ -26,12 +26,8 @@ export default function AdminShell({ email, children }: AdminShellProps) {
 
     return (
         <div className="min-h-screen bg-[#0f0e0f] text-white flex flex-col selection:bg-white/20 selection:text-white">
-            {/* Mobile Header (Hidden on Desktop) */}
-            <AdminMobileHeader onMenuClick={() => setMobileSidebarOpen((prev) => !prev)} />
-
             {/* Sidebar (Desktop Hover Expand + Mobile Drawer) */}
             <AdminSidebar
-                email={email}
                 mobileOpen={mobileSidebarOpen}
                 onMobileClose={() => setMobileSidebarOpen(false)}
             />
@@ -46,12 +42,20 @@ export default function AdminShell({ email, children }: AdminShellProps) {
             )}
 
             {/* Main Content Area (With Desktop 64px offset) */}
-            <div className="flex-1 md:pl-[64px] min-w-0 transition-all duration-300">
-                <main className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="flex-1 md:pl-[64px] min-w-0 flex flex-col transition-all duration-300">
+                {/* Top Navbar / Header with Breadcrumbs and Email */}
+                <AdminTopNavbar
+                    email={email}
+                    onMenuClick={() => setMobileSidebarOpen((prev) => !prev)}
+                />
+
+                {/* Page Content */}
+                <main className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
                     {children}
                 </main>
             </div>
         </div>
     );
 }
+
 
