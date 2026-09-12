@@ -94,7 +94,7 @@ export default function HeroSection() {
                             <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53] transition-colors duration-200" aria-label="LinkedIn">
                                 <FaLinkedin size={28} />
                             </a>
-                            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53] transition-colors duration-200" aria-label="GitHub">
+                            <a href="https://github.com/aslammaulana" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53] transition-colors duration-200" aria-label="GitHub">
                                 <FaSquareGithub size={28} />
                             </a>
                             <a href="https://instagram.com/aslammln" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#f13b53]  transition-colors duration-200" aria-label="Instagram">
@@ -150,7 +150,7 @@ export default function HeroSection() {
                                     WebkitBackdropFilter: "blur(12px)",
                                 }}
                             >
-                                <p className="text-white font-semibold text-sm">AslamMln</p>
+                                <p className="text-white font-semibold text-sm">AslamMaulana</p>
                                 <p className="text-white/50 text-xs mt-0.5">
                                     Web Developer &nbsp;|&nbsp; AI Automation<span className="hidden sm:inline"> Engineer</span>
                                 </p>
