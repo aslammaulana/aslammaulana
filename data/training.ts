@@ -11,6 +11,34 @@ export type TrainingItem = {
 
 export const trainingItems: TrainingItem[] = [
     {
+        name: "Pengoperasian Tools Generative AI untuk Konten Bisnis & Digital",
+        logo: "/assets/experience/blk-banda-aceh.jpg",
+        organizer: "BPVP Banda Aceh",
+        period: "Agustus 2026",
+        location: "Banda Aceh, Indonesia",
+        certificateUrl: "",
+        points: [
+            "Operating Generative AI tools to produce high-quality text and visual content for business and digital purposes.",
+            "Designing AI-optimized digital content strategies, including the use of AI image generators for creative production.",
+            "Building business automation workflows using the n8n platform to integrate and streamline operations efficiently.",
+            "Applying Vibe Coding methodology to rapidly develop AI-powered applications in a productive and iterative manner.",
+        ],
+    },
+    {
+        name: "Kewirausahaan Get Ahead",
+        logo: "/assets/experience/blk-banda-aceh.jpg",
+        organizer: "BPVP Banda Aceh",
+        period: "2026",
+        location: "Banda Aceh, Indonesia",
+        certificateUrl: "",
+        points: [
+            "Understanding the fundamentals of entrepreneurship and cultivating an entrepreneurial mindset.",
+            "Identifying business opportunities and developing structured, actionable business plans.",
+            "Managing basic business finances and formulating effective product and service marketing strategies.",
+            "Building a business brand and understanding the legal aspects of small and medium enterprises.",
+        ],
+    },
+    {
         name: "Web Programming",
         logo: "/assets/experience/blk-banda-aceh.jpg",
         organizer: "BPVP Banda Aceh (BLK Banda Aceh)",
